@@ -9,6 +9,7 @@ import IndexView from '@/views/IndexView';
 import TermView from '@/views/TermView';
 import PrivacyView from '@/views/PrivacyView';
 import BirthdayGiftView from '@/views/BirthdayGiftView';
+import LuckyDraw from '@/views/LuckyDraw';
 
 Vue.use(Router);
 
@@ -35,7 +36,11 @@ export default new Router({
       path: '/Login',
       component: LoginView,
     },
-
+    {
+      name: 'LuckyDraw',
+      path: '/draw',
+      component: LuckyDraw,
+    },
     {
       name: 'Item',
       path: '/item/:id(\\d+)',
