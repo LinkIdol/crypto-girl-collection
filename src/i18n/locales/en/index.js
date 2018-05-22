@@ -3,10 +3,12 @@ const PRIVACY_CONTENT = require('raw-loader!./privacy.html');
 const TERMS_CONTENT = require('raw-loader!./terms.html');
 
 module.exports = {
-  CryptoHero: 'CryptoHero',
+  CryptoGirl: 'CryptoGirl',
   'My Cards': 'My Cards',
   'Sign In': 'Sign In',
+  GirlList: 'Girl List',
   Home: 'Home',
+  LuckyDraw: 'LuckyDraw',
   FAQs: 'FAQs',
   Owner: 'Owner',
   'Current Price': 'Current Price',

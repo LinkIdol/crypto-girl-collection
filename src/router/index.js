@@ -5,6 +5,7 @@ import ListView from '@/views/ListView';
 import LoginView from '@/views/LoginView';
 import FaqView from '@/views/FaqView';
 import UserView from '@/views/UserView';
+import IndexView from '@/views/IndexView';
 import TermView from '@/views/TermView';
 import PrivacyView from '@/views/PrivacyView';
 import BirthdayGiftView from '@/views/BirthdayGiftView';
@@ -17,7 +18,17 @@ export default new Router({
     {
       name: 'Home',
       path: '/',
+      component: IndexView,
+    },
+    {
+      name: 'GirlList',
+      path: '/list',
       component: ListView,
+    },
+    {
+      name: 'Home',
+      path: '/',
+      component: IndexView,
     },
     {
       name: 'Login',
@@ -54,6 +65,6 @@ export default new Router({
       name: 'BirthdayGift',
       path: '/birthday-gift',
       component: BirthdayGiftView,
-    },    
+    },
   ],
 });
