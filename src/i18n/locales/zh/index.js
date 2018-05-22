@@ -3,16 +3,18 @@ const PRIVACY_CONTENT = require('raw-loader!./privacy.html');
 const TERMS_CONTENT = require('raw-loader!./terms.html');
 
 module.exports = {
-  CryptoHero: '以太水浒',
+  CryptoGirl: '币娘 Collection',
   'My Cards': '我的卡牌',
   'Sign In': '登录游戏',
   Home: '首页',
   FAQs: '常见问题',
+  GirlList: '币娘清单',
   Owner: '拥有者',
   'Current Price': '当前价格',
   Buy: '购买',
   BirthdayGift: '智取生辰纲(HOT)',
   'Terms of Service': '使用条款',
+  LuckyDraw: '幸运抽卡',
   'Privacy Policy': '隐私政策',
   'Contact Us': '联系我们',
   Slogan: '标语',

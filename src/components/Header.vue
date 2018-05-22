@@ -4,19 +4,30 @@
       <div class="navbar-brand">
         <router-link class="navbar-item"
                      :to="{ name: 'Home'}">
-          <img src="/static/assets/logo.png">&nbsp;&nbsp;{{$t('CryptoHero')}}
+          <img src="/static/assets/logo.png">&nbsp;&nbsp;{{$t('CryptoGirl')}}
+        </router-link>
+        <router-link
+                     class="navbar-item"
+                     :to="{ name: 'GirlList' }">
+          {{$t('GirlList')}}
         </router-link>
 
-        <router-link v-if="!me"
-                     class="navbar-item"
-                     :to="{ name: 'Login'}">
-          {{$t('Sign In')}}
+        <router-link v-if="me"
+            class="navbar-item"
+            :to="{ name: 'LuckyDraw' }">
+          {{$t('LuckyDraw')}}
+        </router-link>
+
+        <router-link v-if="me"
+          class="navbar-item"
+            :to="{ name: 'User', params:{address: me.address}}">
+          {{$t('My Cards')}}
         </router-link>
 
         <router-link v-else
                      class="navbar-item"
-                     :to="{ name: 'User', params:{address: me.address}}">
-          {{$t('My Cards')}}
+                     :to="{ name: 'Login'}">
+          {{$t('Sign In')}}
         </router-link>
 
         <router-link class="navbar-item"
@@ -24,10 +35,6 @@
           {{$t('FAQs')}}
         </router-link>
 
-        <!-- <router-link class="navbar-item"
-                     :to="{ name: 'BirthdayGift'}">
-          {{$t('BirthdayGift')}}
-        </router-link>         -->
       </div>
 
       <div class="navbar-end">

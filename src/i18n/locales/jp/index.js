@@ -3,13 +3,14 @@ const PRIVACY_CONTENT = require('raw-loader!./privacy.html');
 const TERMS_CONTENT = require('raw-loader!./terms.html');
 
 module.exports = {
-  CryptoHero: '暗号化英雄',
+  CryptoGirl: '仮想通貨少女',
   'My Cards': 'コレクションカード',
   'Sign In': 'サインイン',
   Home: 'ホーム',
   FAQs: 'よくある質問',
   Owner: '所有者',
   'Current Price': '今の価格',
+  LuckyDraw: 'LuckyDraw',
   Buy: '購入',
   'Terms of Service': '利用規約',
   'Privacy Policy': 'プライバシーポリシー',
