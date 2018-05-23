@@ -158,7 +158,8 @@ export const getNextPrice = async (id, time = 0) => {
 // price为用户成功发起交易的交易价格，调用setNextPrice后，nextPrice会变为此价格的1.1倍
 export const setNextPrice = async (id, priceInWei) => {
   // Convert price(Wei) to a number instance (ether)
-  const price = Number(web3.fromWei(priceInWei, 'ether').toString());
+  // const price = Number(web3.utils.fromWei(priceInWei, 'ether').toString());
+  const price = web3.utils.fromWei(priceInWei, 'ether');
   const response = await request
     .get('https://api.leancloud.cn/1.1/classes/ad')
     .set({

@@ -61,6 +61,7 @@ export default class CryptoGirlContract extends Contract {
   async buyItem(id, price) {
     // Price should be converted to wei
     const msg = { value: price, from: this.account };
-    this.contract.buy(id).send(msg);
+    const tx = await this.contract.methods.buy(id).send(msg);
+    return tx;
   }
 }
