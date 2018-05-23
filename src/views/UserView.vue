@@ -33,9 +33,8 @@
 
 <script>
 import ItemList from '@/components/ItemList';
-import { getItemsOf } from '@/api';
-import getAvatarFromAddress from 'dravatar'
-  ;
+import Contract from '@/contract/CryptoGirlContract';
+import getAvatarFromAddress from 'dravatar';
 
 export default {
   name: 'UserView',
@@ -44,6 +43,7 @@ export default {
   },
   data: () => ({
     itemIds: [],
+    contract: null,
   }),
   asyncComputed: {
     async getAvatar() {
@@ -63,12 +63,20 @@ export default {
     },
   },
   async created() {
-    this.itemIds = await getItemsOf(this.$route.params.address);
+    this.contract = new Contract();
+    await this.contract.initialize();
+    this.itemIds = await this.fetchItems();
   },
 
   watch: {},
 
-  methods: {},
+  methods: {
+    async fetchItems() {
+      const items = await this.contract.getItemsOf(this.$route.params.address);
+      console.log(items);
+      return items;
+    },
+  },
 };
 </script>
 <style scoped>

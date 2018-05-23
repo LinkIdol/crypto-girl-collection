@@ -103,7 +103,8 @@
 </template>
 
 <script>
-import { buyItem, exchangeLuckyToken, setGg, setNextPrice } from '@/api';
+import { exchangeLuckyToken, setGg, setNextPrice } from '@/api';
+import CryptoGirlContract from '@/contract/CryptoGirlContract';
 import { toReadablePrice } from '@/util';
 import Dravatar from 'dravatar';
 
@@ -162,20 +163,24 @@ export default {
   watch: {},
 
   methods: {
-    onBuy(rate) {
+    async onBuy(rate) {
+      const contract = new CryptoGirlContract();
+      await contract.initialize();
+
       if (this.$store.state.signInError) {
         return this.$router.push({ name: 'Login' });
       }
-      const buyPrice = this.item.price.times(rate).toFixed(0);
-      buyItem(this.itemId, buyPrice)
-        .then(() => {
-          alert(this.$t('BUY_SUCCESS_MSG'));
-          setNextPrice(this.itemId, buyPrice);
-        })
-        .catch((e) => {
-          alert(this.$t('BUY_FAIL_MSG'));
-          console.log(e);
-        });
+      const buyPrice = (this.item.price * rate).toFixed(0);
+
+      try {
+        await contract.buyItem(this.itemId, buyPrice);
+        alert(this.$t('BUY_SUCCESS_MSG'));
+        setNextPrice(this.itemId, buyPrice);
+        return true;
+      } catch (error) {
+        alert(this.$t('BUY_FAIL_MSG'));
+        return error;
+      }
     },
     toDisplayedPrice(priceInWei) {
       const readable = toReadablePrice(priceInWei);
