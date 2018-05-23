@@ -10,11 +10,11 @@ import convertContractABI from './abi/convertContract.json';
 
 // Sometimes, web3.version.network might be undefined,
 // as a workaround, use defaultNetwork in that case.
-const network = config.network[web3.version.network] || config.defaultNetwork;
-const cryptoWaterMarginContract = web3.eth.contract(cryptoWaterMarginABI).at(network.contract);
+// const network = config.network[web3.version.network] || config.defaultNetwork;
+// const cryptoWaterMarginContract = web3.eth.contract(cryptoWaterMarginABI).at(network.contract);
 
-// This contract supposed to convert CWM to Lucky
-const convertContract = web3.eth.contract(convertContractABI).at(network.convert);
+// // This contract supposed to convert CWM to Lucky
+// const convertContract = web3.eth.contract(convertContractABI).at(network.convert);
 
 let store = [];
 let isInit = false;
@@ -280,10 +280,25 @@ export const getItemsOf = async (address) => {
   return Array.from(new Set(ids));
 };
 
+// export const getNetwork = async () => {
+//   const netId = await Promise.promisify(web3.version.getNetwork)();
+//   return config.network[netId];
+// };
+const promisify = func => new Promise((resolve, reject) => {
+  func((err, data) => {
+    if (data) {
+      return resolve(data);
+    }
+    return reject(err);
+  });
+});
+// New API
 export const getNetwork = async () => {
-  const netId = await Promise.promisify(web3.version.getNetwork)();
+  // const getId = () =>
+  const netId = await promisify(web3.eth.net.getId);
   return config.network[netId];
 };
+
 
 export const getLocale = async () => (
   Cookie.get('locale') ||

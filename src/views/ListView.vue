@@ -4,6 +4,7 @@
          class="loader-wrapper">
       <pulse-loader></pulse-loader>
     </div>
+
     <ItemList :itemIds='itemIds' />
   </div>
 </template>
@@ -11,8 +12,9 @@
 <script>
 import PulseLoader from 'vue-spinner/src/PulseLoader';
 import ItemList from '@/components/ItemList';
-import { getTotal, getItemIds } from '@/api';
-import { toReadablePrice } from '@/util';
+import CryptoGirlContract from '@/contract/CryptoGirlContract';
+// import { getTotal, getItemIds } from '@/api';
+// import { toReadablePrice } from '@/util';
 
 export default {
   name: 'item-list',
@@ -25,24 +27,25 @@ export default {
     return {
       loading: true,
       itemIds: [],
-      total: null,
     };
   },
 
   computed: {},
 
   async created() {
-    this.total = await getTotal();
-    const itemIds = await getItemIds(0, this.total);
+    const contract = new CryptoGirlContract();
+    await contract.initialize();
+    const total = await contract.getTotal();
+    const itemIds = await contract.getItemIds(0, total);
     this.itemIds = itemIds;
     this.loading = false;
   },
 
   methods: {
-    toDisplayedPrice(priceInWei) {
-      const readable = toReadablePrice(priceInWei);
-      return `${readable.price} ${readable.unit}`;
-    },
+    // toDisplayedPrice(priceInWei) {
+    //   const readable = toReadablePrice(priceInWei);
+    //   return `${readable.price} ${readable.unit}`;
+    // },
   },
   watch: {},
 };
