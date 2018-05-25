@@ -17,14 +17,15 @@
 
 	<section>
       <div class="columns is-multiline is-mobile section2div">
-        <div class="column is-4-desktop is-4-tablet is-12-mobile cardItem" v-for="item in itemIds" :key="item.id">
+        <div class="column is-4-desktop is-4-tablet is-12-mobile cardItem" v-for="item in itemIds" :key="item.id"
+        @click="gotoCoinProfile(item.code)">
         	<img class="cardItemImg" alt="" :src="item.img"/>
         	<div :style="{ backgroundColor: item.color, height: '50px' }">
         		<span>
 			        <a :style="{ lineHeight: '50px', color: item.textcolor, paddingLeft: '20px' }">{{ item.name }}{{ item.code }}</a>
 			    </span>
 			    <span class="priceSpan">
-			        <a :style="{ lineHeight: '50px', color: item.textcolor }">{{ item.name }}USD</a>
+			        <a :style="{ lineHeight: '50px', color: item.textcolor }">= =USD</a>
 			    </span>
         	</div>
         </div>
@@ -40,6 +41,11 @@ export default {
   data: () => ({
     itemIds: []
   }),
+  methods: {
+    gotoCoinProfile(code) {
+      this.$router.push({ path: `/coin/${code}` })
+    }
+  },
   mounted() {
     this.$http.get('static/girl_cards.json').then((response) => {
       this.itemIds = response.body;
@@ -108,6 +114,7 @@ export default {
 }
 .cardItemImg{
 	vertical-align:bottom;
+	cursor: pointer;
 }
 .priceSpan {
 	float:right;

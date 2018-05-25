@@ -1,12 +1,24 @@
 <template>
   <header>
-    <nav class="navbar is-light">
+    <nav class="navbar">
       <div class="navbar-brand">
         <router-link class="navbar-item"
                      :to="{ name: 'Home'}">
-          <img src="/static/assets/logo.png">&nbsp;&nbsp;{{$t('CryptoGirl')}}
+          <img src="/static/assets/logo.png">&nbsp;&nbsp;{{$t('LinkIdol')}}
         </router-link>
+
         <router-link
+                     class="navbar-item"
+                     :to="{ name: 'Collection' }">
+          我的收藏
+        </router-link>
+
+        <router-link
+                     class="navbar-item"
+                     :to="{ name: 'GirlList' }">
+          排行榜
+        </router-link>
+        <!-- <router-link
                      class="navbar-item"
                      :to="{ name: 'GirlList' }">
           {{$t('GirlList')}}
@@ -34,6 +46,11 @@
                      :to="{ name: 'FAQ'}">
           {{$t('FAQs')}}
         </router-link>
+
+        <router-link class="navbar-item"
+                     :to="{ name: 'Rank'}">
+          {{$t('Ranking')}}
+        </router-link> -->
 
       </div>
 
@@ -130,6 +147,12 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+.navbar {
+  background-color: #91cbe9;
+  color: #fafafa !important;
+}
+.navbar-item {
+    color: #0787c8 !important;
+}
 </style>

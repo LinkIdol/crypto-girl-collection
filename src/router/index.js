@@ -12,6 +12,7 @@ import LuckyDraw from '@/views/LuckyDraw';
 
 import HomePage from '@/views/HomePage';
 import MyCollectionPage from '@/views/MyCollectionPage';
+import CoinProfile from '@/views/CoinProfile';
 
 Vue.use(Router);
 
@@ -29,15 +30,15 @@ export default new Router({
     //   component: ListView,
     // },
     {
+      name: 'CoinProfile',
+      path: '/coin/:name',
+      component: CoinProfile,
+    },
+    {
       name: 'Collection',
-      path: '/mycollection',
+      path: '/collection',
       component: MyCollectionPage,
     },
-    // {
-    //   name: 'LuckyDraw',
-    //   path: '/draw',
-    //   component: LuckyDraw,
-    // },
     // {
     //   name: 'Item',
     //   path: '/item/:id(\\d+)',

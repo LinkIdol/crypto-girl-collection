@@ -1,0 +1,45 @@
+{
+    "BTC": {
+        "id": 1,
+        "fullname": "Bitcoin",
+        "founder": "Satoshi Nakamoto",
+        "DOB": "2009-01-03",
+        "consensus": "PoW",
+        "info": "In Nov. 2008, a guy named Satoshi Nakamoto announced his idea about cryptocurrency."
+    },
+    "ETH": {
+        "id": 1027,
+        "fullname": "Ethereum",
+        "founder": "Vitalik Buterin",
+        "DOB": "",
+        "consensus": "PoW => PoS"
+    },
+    "EOS": {
+        "id": 1765,
+        "fullname": "EOS.IO",
+        "founder": "block.one",
+        "DOB": "",
+        "consensus": "DPoS"
+    },
+    "BCH": {
+        "id": 1831,
+        "fullname": "Bitcoin Cash",
+        "founder": "Satoshi Nakamoto",
+        "DOB": "",
+        "consensus": "PoW"
+    },
+    "DOGE": {
+        "id": 74,
+        "fullname": "Dogecoin",
+        "founder": "Billy Markus",
+        "DOB": "2013-12-06",
+        "consensus": "PoW"
+    },
+    "XPM": {
+        "id": 42,
+        "fullname": "Primecoin",
+        "founder": "Sunny King",
+        "DOB": "2013-07-06",
+        "consensus": "PoW"
+    }
+}
