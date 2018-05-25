@@ -1,0 +1,50 @@
+{
+	"1":{
+        "id": 1,
+        "name": "质数币",
+        "code": "(XPM)",
+        "color": "#ebe5b0",
+        "textcolor": "#b8a909",
+        "img": "../../static/assets/girlcards/card_xpm.png"
+	},
+	"2":{
+        "id": 2,
+        "name": "萨莉",
+        "code": "(SARI)",
+        "color": "#aedfe8",
+        "textcolor": "#3199af",
+        "img": "../../static/assets/girlcards/card_sari.png"
+	},
+	"3":{
+        "id": 3,
+        "name": "狗狗币",
+        "code": "(DGC)",
+        "color": "#e8c0af",
+        "textcolor": "#b47a68",
+        "img": "../../static/assets/girlcards/card_doge.png"
+	},
+	"4":{
+        "id": 4,
+        "name": "区块链",
+        "code": "",
+        "color": "#aec9e9",
+        "textcolor": "#5381b7",
+        "img": "../../static/assets/girlcards/card_block.png"
+	},
+	"5":{
+        "id": 5,
+        "name": "以太币",
+        "code": "(ETH)",
+        "color": "#bbe7ae",
+        "textcolor": "#59904c",
+        "img": "../../static/assets/girlcards/card_eth.png"
+	},
+	"6":{
+        "id": 6,
+        "name": "比特币",
+        "code": "(BTC)",
+        "color": "#ebd4b0",
+        "textcolor": "#d48e18",
+        "img": "../../static/assets/girlcards/card_btc.png"
+	}
+}
