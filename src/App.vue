@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
 
-    <div class="container main-container">
+    <div>
       <router-view :key="key"></router-view>
     </div>
 

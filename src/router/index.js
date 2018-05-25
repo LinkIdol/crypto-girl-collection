@@ -5,11 +5,14 @@ import ListView from '@/views/ListView';
 import LoginView from '@/views/LoginView';
 import FaqView from '@/views/FaqView';
 import UserView from '@/views/UserView';
-import IndexView from '@/views/IndexView';
 import TermView from '@/views/TermView';
 import PrivacyView from '@/views/PrivacyView';
 import BirthdayGiftView from '@/views/BirthdayGiftView';
 import LuckyDraw from '@/views/LuckyDraw';
+
+import HomePage from '@/views/HomePage';
+import MyCollectionPage from '@/views/MyCollectionPage';
+import CoinProfile from '@/views/CoinProfile';
 
 Vue.use(Router);
 
@@ -19,57 +22,52 @@ export default new Router({
     {
       name: 'Home',
       path: '/',
-      component: IndexView,
+      component: HomePage,
+    },
+    // {
+    //   name: 'GirlList',
+    //   path: '/list',
+    //   component: ListView,
+    // },
+    {
+      name: 'CoinProfile',
+      path: '/coin/:name',
+      component: CoinProfile,
     },
     {
-      name: 'GirlList',
-      path: '/list',
-      component: ListView,
+      name: 'Collection',
+      path: '/collection',
+      component: MyCollectionPage,
     },
-    {
-      name: 'Home',
-      path: '/',
-      component: IndexView,
-    },
-    {
-      name: 'Login',
-      path: '/Login',
-      component: LoginView,
-    },
-    {
-      name: 'LuckyDraw',
-      path: '/draw',
-      component: LuckyDraw,
-    },
-    {
-      name: 'Item',
-      path: '/item/:id(\\d+)',
-      component: ItemView,
-    },
-    {
-      name: 'User',
-      path: '/user/:address',
-      component: UserView,
-    },
-    {
-      name: 'FAQ',
-      path: '/faq',
-      component: FaqView,
-    },
-    {
-      name: 'Privacy',
-      path: '/privacy-policy',
-      component: PrivacyView,
-    },
-    {
-      name: 'Term',
-      path: '/terms-of-us',
-      component: TermView,
-    },
-    {
-      name: 'BirthdayGift',
-      path: '/birthday-gift',
-      component: BirthdayGiftView,
-    },
+    // {
+    //   name: 'Item',
+    //   path: '/item/:id(\\d+)',
+    //   component: ItemView,
+    // },
+    // {
+    //   name: 'User',
+    //   path: '/user/:address',
+    //   component: UserView,
+    // },
+    // {
+    //   name: 'FAQ',
+    //   path: '/faq',
+    //   component: FaqView,
+    // },
+    // {
+    //   name: 'Privacy',
+    //   path: '/privacy-policy',
+    //   component: PrivacyView,
+    // },
+    // {
+    //   name: 'Term',
+    //   path: '/terms-of-us',
+    //   component: TermView,
+    // },
+    // {
+    //   name: 'BirthdayGift',
+    //   path: '/birthday-gift',
+    //   component: BirthdayGiftView,
+    // },
   ],
 });
