@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "bignumber.js": "^6.0.0",
-    "bluebird": "^3.5.1",
     "buefy": "^0.6.5",
     "dravatar": "^1.0.2",
     "ethereum-blockies-png": "^0.1.2",
