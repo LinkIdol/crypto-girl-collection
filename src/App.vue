@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
 
-    <div class="container main-container">
+    <div>
       <router-view :key="key"></router-view>
     </div>
 
@@ -13,12 +13,19 @@
 <script>
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
   components: {
     Header,
     Footer,
+  },
+  async created() {
+    await this.setContract();
+  },
+  methods: {
+    ...mapActions(['setContract']),
   },
   computed: {
     key() {

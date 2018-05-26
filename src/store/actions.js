@@ -15,6 +15,7 @@
 
 // import * as types from './mutation-types';
 import * as api from '@/api';
+import CryptoGirlContract from '@/contract/CryptoGirlContract';
 
 export default {
   async initLocale({ commit }) {
@@ -25,6 +26,11 @@ export default {
     await api.setLocale(locale);
     commit('setLocale', locale);
   },
+  // async setContract({ commit }) {
+  //   let contract = new CryptoGirlContract();
+  //   contract = await contract.initialize();
+  //   commit('setContract', contract);
+  // },
   async FETCH_ME({ commit }) {
     try {
       const me = await api.getMe();
@@ -36,11 +42,13 @@ export default {
     }
   },
   async FETCH_ITEM({ commit }, id) {
-    const item = await api.getItem(id);
+    const contract = new CryptoGirlContract();
+    await contract.initialize();
+    const item = await contract.getItem(id);
 
-    // Get is LCY Claimed and merge the status into the item
-    const isLCYClaimed = await api.isConvert(id);
-    item.isLCYClaimed = isLCYClaimed;
+    // // Get is LCY Claimed and merge the status into the item
+    // const isLCYClaimed = await api.isConvert(id);
+    // item.isLCYClaimed = isLCYClaimed;
 
     commit('SET_ITEM', { id, item });
   },

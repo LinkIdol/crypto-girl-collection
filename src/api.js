@@ -1,20 +1,20 @@
-import Promise from 'bluebird';
+// import Promise from 'bluebird';
 import Cookie from 'js-cookie';
 import { BigNumber } from 'bignumber.js';
 import web3 from '@/web3';
 import * as config from '@/config';
 import request from 'superagent';
 import timeout from 'timeout-then';
-import cryptoWaterMarginABI from './abi/cryptoWaterMargin.json';
-import convertContractABI from './abi/convertContract.json';
+// import cryptoWaterMarginABI from './abi/cryptoWaterMargin.json';
+// import convertContractABI from './abi/convertContract.json';
 
 // Sometimes, web3.version.network might be undefined,
 // as a workaround, use defaultNetwork in that case.
-const network = config.network[web3.version.network] || config.defaultNetwork;
-const cryptoWaterMarginContract = web3.eth.contract(cryptoWaterMarginABI).at(network.contract);
+// const network = config.network[web3.version.network] || config.defaultNetwork;
+// const cryptoWaterMarginContract = web3.eth.contract(cryptoWaterMarginABI).at(network.contract);
 
-// This contract supposed to convert CWM to Lucky
-const convertContract = web3.eth.contract(convertContractABI).at(network.convert);
+// // This contract supposed to convert CWM to Lucky
+// const convertContract = web3.eth.contract(convertContractABI).at(network.convert);
 
 let store = [];
 let isInit = false;
@@ -158,7 +158,8 @@ export const getNextPrice = async (id, time = 0) => {
 // price为用户成功发起交易的交易价格，调用setNextPrice后，nextPrice会变为此价格的1.1倍
 export const setNextPrice = async (id, priceInWei) => {
   // Convert price(Wei) to a number instance (ether)
-  const price = Number(web3.fromWei(priceInWei, 'ether').toString());
+  // const price = Number(web3.utils.fromWei(priceInWei, 'ether').toString());
+  const price = web3.utils.fromWei(priceInWei, 'ether');
   const response = await request
     .get('https://api.leancloud.cn/1.1/classes/ad')
     .set({
@@ -212,57 +213,57 @@ export const setNextPrice = async (id, priceInWei) => {
   return price * 1.1;
 };
 
-export const getItem = async (id) => {
-  const exist = await Promise.promisify(cryptoWaterMarginContract.tokenExists)(id);
-  if (!exist) return null;
-  const card = config.cards[id] || {};
-  const item = {
-    id,
-    name: card.name,
-    nickname: card.nickname,
-  };
-  [item.owner, item.price, item.nextPrice] =
-    await Promise.promisify(cryptoWaterMarginContract.allOf)(id);
+// export const getItem = async (id) => {
+//   const exist = await Promise.promisify(cryptoWaterMarginContract.tokenExists)(id);
+//   if (!exist) return null;
+//   const card = config.cards[id] || {};
+//   const item = {
+//     id,
+//     name: card.name,
+//     nickname: card.nickname,
+//   };
+//   [item.owner, item.price, item.nextPrice] =
+//     await Promise.promisify(cryptoWaterMarginContract.allOf)(id);
 
-  // [[item.owner, item.price, item.nextPrice], item.estPrice] = await Promise.all([
-  //   Promise.promisify(cryptoWaterMarginContract.allOf)(id),
-  //   getNextPrice(id)]);
-  // item.price = BigNumber.maximum(item.price, item.estPrice);
-  return item;
-};
+//   // [[item.owner, item.price, item.nextPrice], item.estPrice] = await Promise.all([
+//   //   Promise.promisify(cryptoWaterMarginContract.allOf)(id),
+//   //   getNextPrice(id)]);
+//   // item.price = BigNumber.maximum(item.price, item.estPrice);
+//   return item;
+// };
 
-export const buyItem = (id, price) => new Promise((resolve, reject) => {
-  cryptoWaterMarginContract.buy(id, {
-    value: price, // web3.toWei(Number(price), 'ether'),
-    gas: 220000,
-    gasPrice: 1000000000 * 100,
-  },
-  (err, result) => (err ? reject(err) : resolve(result)));
-});
+// export const buyItem = (id, price) => new Promise((resolve, reject) => {
+//   cryptoWaterMarginContract.buy(id, {
+//     value: price, // web3.toWei(Number(price), 'ether'),
+//     gas: 220000,
+//     gasPrice: 1000000000 * 100,
+//   },
+//   (err, result) => (err ? reject(err) : resolve(result)));
+// });
 
-// Lucky Part
-export const exchangeLuckyToken = tokenId => new Promise((resolve, reject) => {
-  convertContract.getNewToken(tokenId, {
-    value: 0, // web3.toWei(Number(price), 'ether'),
-    gas: 80000,
-    gasPrice: 1000000000 * 18,
-  },
-  (err, result) => (err ? reject(err) : resolve(result)));
-});
+// // Lucky Part
+// export const exchangeLuckyToken = tokenId => new Promise((resolve, reject) => {
+//   convertContract.getNewToken(tokenId, {
+//     value: 0, // web3.toWei(Number(price), 'ether'),
+//     gas: 80000,
+//     gasPrice: 1000000000 * 18,
+//   },
+//   (err, result) => (err ? reject(err) : resolve(result)));
+// });
 
-export const isConvert = cardId => new Promise((resolve, reject) => {
-  convertContract.isConvert(cardId,
-    (err, result) => (err ? reject(err) : resolve(result)));
-});
+// export const isConvert = cardId => new Promise((resolve, reject) => {
+//   convertContract.isConvert(cardId,
+//     (err, result) => (err ? reject(err) : resolve(result)));
+// });
 
-export const getTotal = () => Promise.promisify(cryptoWaterMarginContract.totalSupply)();
+// export const getTotal = () => Promise.promisify(cryptoWaterMarginContract.totalSupply)();
 
-export const getItemIds = async (offset, limit) => {
-  let ids = await Promise.promisify(cryptoWaterMarginContract.itemsForSaleLimit)(offset, limit);
-  ids = ids.map(id => id.toNumber());
-  ids.sort((a, b) => a - b);
-  return Array.from(new Set(ids));
-};
+// export const getItemIds = async (offset, limit) => {
+//   let ids = await Promise.promisify(cryptoWaterMarginContract.itemsForSaleLimit)(offset, limit);
+//   ids = ids.map(id => id.toNumber());
+//   ids.sort((a, b) => a - b);
+//   return Array.from(new Set(ids));
+// };
 
 export const isItemMaster = async (id) => {
   const me = await getMe();
@@ -271,19 +272,34 @@ export const isItemMaster = async (id) => {
   return me && me.address && item && item.owner && me.address === item.owner;
 };
 
-export const getItemsOf = async (address) => {
-  let ids = await Promise.promisify(
-    cryptoWaterMarginContract.tokensOf)(address)
-    ;
-  ids = ids.map(id => id.toNumber());
-  ids.sort((a, b) => a - b);
-  return Array.from(new Set(ids));
-};
+// export const getItemsOf = async (address) => {
+//   let ids = await Promise.promisify(
+//     cryptoWaterMarginContract.tokensOf)(address)
+//     ;
+//   ids = ids.map(id => id.toNumber());
+//   ids.sort((a, b) => a - b);
+//   return Array.from(new Set(ids));
+// };
 
+// export const getNetwork = async () => {
+//   const netId = await Promise.promisify(web3.version.getNetwork)();
+//   return config.network[netId];
+// };
+const promisify = func => new Promise((resolve, reject) => {
+  func((err, data) => {
+    if (data) {
+      return resolve(data);
+    }
+    return reject(err);
+  });
+});
+// New API
 export const getNetwork = async () => {
-  const netId = await Promise.promisify(web3.version.getNetwork)();
+  // const getId = () =>
+  const netId = await promisify(web3.eth.net.getId);
   return config.network[netId];
 };
+
 
 export const getLocale = async () => (
   Cookie.get('locale') ||
