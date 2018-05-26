@@ -27,7 +27,7 @@ jobs:
             - yarn-packages-master
             - yarn-packages-
 
-       - run:
+      - run:
           name: Install Dependencies
           command: yarn install
 
