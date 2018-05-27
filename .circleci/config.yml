@@ -57,6 +57,9 @@ jobs:
       #     name: Add Custom Domain Name Profile
       #     command: echo '${domain}' >> CNAME
       - run:
+          name: Keyscan Github (HACK)
+          command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+      - run:
           name: Deploy to Github Pages
           command: |
             git config --global user.email "bot@frankwei.xyz"
