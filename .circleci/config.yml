@@ -1,3 +1,9 @@
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:8.11.1
+
+
 # Javascript Node CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
@@ -5,17 +11,7 @@
 version: 2
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8.11.1
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+    <<: *defaults
     steps:
       - checkout
       # Download and cache dependencies
@@ -39,3 +35,41 @@ jobs:
         
       # run builds!
       - run: yarn run build
+  deploy:
+    <<: *defaults
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b1:a7:69:a0:ba:d9:e2:12:bb:d1:60:39:ac:55:25:f1"
+      - attach_workspace : 
+          at: ~/repo/dist
+      # - run: 
+      #     name: Add Custom Domain Name Profile
+      #     command: echo '${domain}' >> CNAME
+      - run:
+          name: Deploy to Github Pages
+          command: |
+            git init
+            git add .
+            git commit -m "CI Update website
+            git push --force --quiet git@github.com:LinkIdol/crypto-girl-collection.git master:gh-pages
+      
+
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /master/
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: /master/
