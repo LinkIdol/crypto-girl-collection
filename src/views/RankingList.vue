@@ -101,6 +101,7 @@ export default {
      float: left;
      color:#3097cc;
      font-size: 24px;
+     text-align: center;
 }
 .tab{
      width: 100%;
