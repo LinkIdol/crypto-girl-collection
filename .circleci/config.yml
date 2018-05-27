@@ -50,7 +50,7 @@ jobs:
           command: |
             git init
             git add .
-            git commit -m "CI Update website
+            git commit -m "CI Update website"
             git push --force --quiet git@github.com:LinkIdol/crypto-girl-collection.git master:gh-pages
       
 
@@ -65,10 +65,10 @@ workflows:
       - build:
           filters:
             branches:
-              only: /master/
+              only: /testing-ci/
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: /master/
+              only: /testing-ci/
