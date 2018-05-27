@@ -54,9 +54,6 @@ jobs:
             - "b1:a7:69:a0:ba:d9:e2:12:bb:d1:60:39:ac:55:25:f1"
       - attach_workspace: 
           at: ~/repo/dist
-      # - run: 
-      #     name: Add Custom Domain Name Profile
-      #     command: echo '${domain}' >> CNAME
       - run:
           name: Keyscan Github (HACK)
           command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
@@ -66,6 +63,7 @@ jobs:
             cd ./dist/dist 
             git config --global user.email "bot@frankwei.xyz"
             git config --global user.name "Circle CI Deploy Bot"
+            echo "linkidol.pro" >> CNAME # add custom domain
             git init
             git add .
             git commit -m "Update website"
