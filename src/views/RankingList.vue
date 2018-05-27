@@ -11,10 +11,10 @@
     </div>
     <div class="ranking-ul"> 
      <ul style=" background-color:#97ceea; height: 30px;">
-        <li class="rank" style="margin-top: 4px; height: 30px; line-height: 24px;"> <b>名次</b></li> 
-        <li class="id" style=" margin-top: 4px; height: 30px;"> ID</li>
-        <li class="key" style=" margin-top: 4px; height: 30px;"> 钱包地址</li>
-        <li class="time" style=" margin-top: 4px; height: 30px;"> 合成时间</li>   
+        <li class="rank1" style=" line-height: 27px;">名次</li> 
+        <li class="id1" > ID</li>
+        <li class="key1" > 钱包地址</li>
+        <li class="time1" > 合成时间</li>   
     </ul>
      </div>
     <div  v-for="( item, index ) in items" :key="item.id" class="ranking-ul"> 
@@ -57,6 +57,15 @@ export default {
        { ID: 'DanielYang',
       key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
       time:'2018.0524.18:32' },
+       { ID: 'DanielYang',
+      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
+      time:'2018.0524.18:32' },
+       { ID: 'DanielYang',
+      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
+      time:'2018.0524.18:32' },
+       { ID: 'DanielYang',
+      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
+      time:'2018.0524.18:32' },
       { ID: 'DanielYang',
       key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
       time:'2018.0524.18:32' }
@@ -72,7 +81,7 @@ export default {
      list-style: none;
 }
  .back{
-     height: 800px;
+     height: 1200px;
      background:no-repeat top center;
      background-color: #f2fcff;
 }
@@ -124,27 +133,36 @@ export default {
      float:left ;
      font-size: 18px;
 }
-
-.rank{
-     width: 60px;
+.rank1, .id1, .key1, .time1{
+     margin-top: 4px;
+    height: 30px;
+}
+ 
+ .rank, .id ,.key, .time{
      height: 60px;
-     line-height: 60px;
 }
  .id ,.key,.time{
      margin-top: 25px;
 }
-.id{
+
+.rank, .rank1{
+     width: 60px;
+     margin-left: 30px;
+}
+.rank{
+     line-height: 60px;
+}
+.id, .id1{
      width: 150px;
-     height: 60px;
+}
+.id{
      margin-top: 25px;
 }
-.key{
+.key, .key1{
      width: 400px;
-     height: 60px;
 }
-.time{
+.time, .time1{
      width: 200px;
-     height: 60px;
 }
  #back2:nth-child(even){
      background-color: #ccecf8;
@@ -169,10 +187,10 @@ export default {
 }
 
  @media screen and (max-width: 841px) {
-     .time{
+     .time,.time1{
          display: none;
 }
-.title{
+     .title{
          width: 50%;
 }
  }
@@ -182,22 +200,15 @@ export default {
          display: flex;
          justify-content:space-around;
 }
-     .key{
+     .key, .key1{
          display: none;
-}
-    .rank{
-         width: 60px;
-         height: 60px;
-         line-height: 60px;
-}
-     .id{
-         width: 150px;
-         height: 60px;
-         margin-top: 25px;
 }
      .title{
          width: 80%;
  
+}
+.line{
+     width: 14%;     
 }
 }
 </style>
