@@ -48,6 +48,8 @@ jobs:
       - run:
           name: Deploy to Github Pages
           command: |
+            git config --global user.email "bot@frankwei.xyz"
+            git config --global user.name "Circle CI Deploy Bot"
             git init
             git add .
             git commit -m "CI Update website"
