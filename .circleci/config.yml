@@ -51,7 +51,7 @@ jobs:
             git init
             git add .
             git commit -m "CI Update website
-            git push --force --quiet git@github.com:LinkIdol/crypto-girl-collection.git
+            git push --force --quiet git@github.com:LinkIdol/crypto-girl-collection.git master:gh-pages
       
 
 
