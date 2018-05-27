@@ -13,7 +13,7 @@ import LuckyDraw from '@/views/LuckyDraw';
 import HomePage from '@/views/HomePage';
 import MyCollectionPage from '@/views/MyCollectionPage';
 import CoinProfile from '@/views/CoinProfile';
-
+import RankingList from '@/views/RankingList';
 Vue.use(Router);
 
 export default new Router({
@@ -38,6 +38,11 @@ export default new Router({
       name: 'Collection',
       path: '/collection',
       component: MyCollectionPage,
+    },
+    {
+      name: 'RankingList',
+      path: '/RankingList',
+      component: RankingList,
     },
     // {
     //   name: 'Item',

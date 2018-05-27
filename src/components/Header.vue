@@ -15,7 +15,7 @@
 
         <router-link
                      class="navbar-item"
-                     :to="{ name: 'GirlList' }">
+                     :to="{ name: 'RankingList' }">
           排行榜
         </router-link>
         <!-- <router-link
