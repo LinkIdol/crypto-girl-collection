@@ -187,7 +187,7 @@ export default {
 }
 
  @media screen and (max-width: 841px) {
-     .time,.time1{
+     .time, .time1{
          display: none;
 }
      .title{
