@@ -62,6 +62,7 @@ jobs:
       - run:
           name: Deploy to Github Pages
           command: |
+            cd ./dist/dist 
             git config --global user.email "bot@frankwei.xyz"
             git config --global user.name "Circle CI Deploy Bot"
             git init
