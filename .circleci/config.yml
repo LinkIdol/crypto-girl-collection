@@ -67,25 +67,28 @@ jobs:
             git config --global user.name "Circle CI Deploy Bot"
             git init
             git add .
-            git commit -m "CI Update website"
-            git push --force --quiet git@github.com:LinkIdol/crypto-girl-collection.git master:gh-pages
+            git commit -m "Update website"
+            git push --force --quiet git@github.com:LinkIdol/website-eth.git master:master
       
 
 
 workflows:
   version: 2
-  # build:
-  #   jobs:
-  #     - build
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /master/
   build-and-deploy:
     jobs:
       - build:
           filters:
             branches:
-              only: /testing-ci/
+              only: /master/
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: /testing-ci/
+              only: /master/
