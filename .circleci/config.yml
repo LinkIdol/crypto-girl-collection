@@ -78,7 +78,7 @@ jobs:
           # I am a front end hipster after all. ~_^
           name: Deploy to Surge.sh
           command: |
-            npm i -g surge          
+            sudo npm i -g surge          
             cd ./dist/dist/
             echo "testing.linkidol.pro" >> CNAME # add custom domain
             surge --project ./ --domain linkidol-eth-testing.surge.sh      
