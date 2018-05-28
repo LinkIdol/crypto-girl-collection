@@ -80,8 +80,8 @@ jobs:
           command: |
             sudo npm i -g surge          
             cd ./dist/dist/
-            echo "testing.linkidol.pro" >> CNAME # add custom domain
-            surge --project ./ --domain linkidol-eth-testing.surge.sh      
+            # echo "testing.linkidol.pro" >> CNAME # add custom domain
+            surge --project ./ --domain testing.linkidol.pro      
 
 
 workflows:
