@@ -91,8 +91,9 @@ workflows:
       - build:
           filters:
             branches:
-              only: 
-                - /feat-.*/
+              ignore: 
+                - /testing/
+                - /master/
   build-and-deploy-to-testing:
     jobs:
       - build:
