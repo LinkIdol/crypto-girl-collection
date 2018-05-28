@@ -78,8 +78,8 @@ jobs:
           # I am a front end hipster after all. ~_^
           name: Deploy to Surge.sh
           command: |
+            npm i -g surge          
             cd ./dist/dist/
-            yarn global add surge
             echo "testing.linkidol.pro" >> CNAME # add custom domain
             surge --project ./ --domain linkidol-eth-testing.surge.sh      
 
@@ -91,7 +91,8 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: /master/
+              only: 
+                - /feat-.*/
   build-and-deploy-to-testing:
     jobs:
       - build:
