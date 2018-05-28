@@ -78,7 +78,8 @@ jobs:
           # I am a front end hipster after all. ~_^
           name: Deploy to Surge.sh
           command: |
-            cd ./dist/dist 
+            cd ./dist/dist/
+            yarn global add surge
             echo "testing.linkidol.pro" >> CNAME # add custom domain
             surge --project ./ --domain linkidol-eth-testing.surge.sh      
 
