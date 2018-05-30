@@ -1,3 +1,5 @@
+Demo: [linkidol.pro](linkidol.pro)
+
 # CryptoGirl
 
 [![Join our Telegram](https://icon-icons.com/icons2/555/PNG/32/telegram_icon-icons.com_53603.png)](https://t.me/CryptoGirl_Official)
