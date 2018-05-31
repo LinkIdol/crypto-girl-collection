@@ -17,9 +17,9 @@
 
 	<section>
       <div class="columns is-multiline is-mobile section2div">
-        <div class="column is-4-desktop is-4-tablet is-12-mobile cardItem" v-for="item in itemIds" :key="item.id"
+        <div class="column is-4-desktop is-4-tablet is-12-mobile" v-for="item,index in itemIds" :key="item.id"
         @click="gotoCoinProfile(item.code)">
-        	<img class="cardItemImg" alt="" :src="item.img"/>
+        	<!-- <img class="cardItemImg" alt="" :src="item.img"/>
         	<div :style="{ backgroundColor: item.color, height: '50px' }">
         		<span>
 			        <a :style="{ lineHeight: '50px', color: item.textcolor, paddingLeft: '20px' }">{{ item.name }}{{ item.code }}</a>
@@ -27,7 +27,8 @@
 			    <span class="priceSpan">
 			        <a :style="{ lineHeight: '50px', color: item.textcolor }">= =USD</a>
 			    </span>
-        	</div>
+        	</div> -->
+        	<CardItem :item='item'></CardItem>
         </div>
       </div>
     </section>
@@ -36,14 +37,22 @@
 </template>
 
 <script>
+import CardItem from '@/components/CardItem';
+
 export default {
   name: 'HomePage',
   data: () => ({
     itemIds: []
   }),
+  components: {
+    CardItem
+  },
   methods: {
     gotoCoinProfile(code) {
       this.$router.push({ path: `/coin/${code}` })
+    },
+    onCardOver(index) {
+    	console.log(index)
     }
   },
   mounted() {
@@ -112,10 +121,10 @@ export default {
 	padding-top: 30px;
 	padding-bottom: 50px;
 }
-.cardItemImg{
+/*.cardItemImg{
 	vertical-align:bottom;
 	cursor: pointer;
-}
+}*/
 .priceSpan {
 	float:right;
 	padding-right: 20px;
@@ -136,9 +145,9 @@ export default {
 	.section2div {
 		padding-top: 100px;
 	}
-	.cardItemImg{
+	/*.cardItemImg{
 		width: 100%;
-	}
+	}*/
 }
 </style>
 
