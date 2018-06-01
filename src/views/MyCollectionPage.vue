@@ -7,7 +7,7 @@
 				<img class="iconimg" alt="" width="100" srcset="../assets/usericon.jpg"/>
 			</div>
 			<div class="usercontent">
-				<p class="useraddress">useraddress0xaaaaaaaaaaaaa</p>
+				<p class="useraddress">{{ myaddress }}</p>
 			</div>
 		</div>
     </section>
@@ -33,11 +33,25 @@
 </template>
 
 <script>
+import web3 from '@/web3';
+import {
+  getMe,
+  getMyCards
+} from '@/api';
+
 export default {
   name: 'MyCollectionPage',
   data: () => ({
-    itemIds: []
+    itemIds: [],
+    myaddress: ""
   }),
+  async created() {
+    const my = await getMe();
+    this.myaddress = my.address;
+
+    const tokens = await getMyCards();
+    console.log(tokens);
+  },
   methods: {
     gotoCoinProfile(code) {
       this.$router.push({ path: `/coin/${code}` })

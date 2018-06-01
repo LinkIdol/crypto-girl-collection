@@ -26,10 +26,10 @@ export const network = {
   },
   42: {
     name: 'Kovan Test Network',
-    contract: '0x23f9d870fbee3161443d9898d0c494ce0416b886',
-    luckyPackage: '0xb760ada4f12e5d29eff2d9eef3bca94b574a1f2f',
-    convert: '0xb55edc9c72d56447d6d1ea2476bcb42e74df16cf',
-    DecentralizedExchangeHotPotato: '0xac7e1a3263e06329eee8ac5b45f3ac2223119779',
+    linkidol: '0x39f8a3ff4e5097e57c777857697836079a51dc1d',
+    IdolDraw: '0xc6d6d2c0eb7d64467ad02efc54496cdfc2fe55d6',
+    // convert: '0xb55edc9c72d56447d6d1ea2476bcb42e74df16cf',
+    // DecentralizedExchangeHotPotato: '0xac7e1a3263e06329eee8ac5b45f3ac2223119779',
     rpc: 'https://kovan.infura.io/lTETGFVyQX99UKQ98BN4',
   },
 };

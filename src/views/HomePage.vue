@@ -8,8 +8,8 @@
 			</div>
 			<div class="btnContainer">
 				<div class="cardbtn">
-					<img class="btnimg" width="150" alt="" srcset="../assets/home_btn.png"/>
-					<p class="cardcount">卡包内剩余10000张卡</p>
+					<img class="btnimg" width="150" alt="" srcset="../assets/home_btn.png" @click="getCard()"/>
+					<p class="cardcount">卡包内剩余{{ leftCardCount }}张卡</p>
 				</div>
 			</div>
 		</div>
@@ -38,21 +38,30 @@
 
 <script>
 import CardItem from '@/components/CardItem';
+import web3 from '@/web3';
+import {
+  getLeftCardsCount,
+  drawCard
+} from '@/api';
 
 export default {
   name: 'HomePage',
   data: () => ({
-    itemIds: []
+    itemIds: [],
+    leftCardCount: 0
   }),
   components: {
     CardItem
+  },
+  async created() {
+    this.leftCardCount = await getLeftCardsCount();
   },
   methods: {
     gotoCoinProfile(code) {
       this.$router.push({ path: `/coin/${code}` })
     },
-    onCardOver(index) {
-    	console.log(index)
+    getCard() {
+    	drawCard("");
     }
   },
   mounted() {
@@ -106,6 +115,9 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+.btnimg {
+    cursor: pointer;
 }
 .cardcount {
 	color: #5495c6;
