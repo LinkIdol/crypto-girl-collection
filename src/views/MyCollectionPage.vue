@@ -7,7 +7,7 @@
 				<img class="iconimg" alt="" width="100" srcset="../assets/usericon.jpg"/>
 			</div>
 			<div class="usercontent">
-				<p class="useraddress">useraddress0xaaaaaaaaaaaaa</p>
+				<p class="useraddress">{{ myaddress }}</p>
 			</div>
 		</div>
     </section>
@@ -16,15 +16,7 @@
       <div class="columns is-multiline is-mobile section2div">
         <div class="column is-4-desktop is-4-tablet is-12-mobile cardItem" v-for="item in itemIds" :key="item.id"
         @click="gotoCoinProfile(item.code)">
-        	<img class="cardItemImg" alt="" :src="item.img"/>
-        	<div :style="{ backgroundColor: item.color, height: '50px' }">
-        		<span>
-			        <a :style="{ lineHeight: '50px', color: item.textcolor, paddingLeft: '20px' }">{{ item.name }}{{ item.code }}</a>
-			    </span>
-			    <span class="priceSpan">
-			        <a :style="{ lineHeight: '50px', color: item.textcolor }">{{ item.name }}USD</a>
-			    </span>
-        	</div>
+        	<CardItem :item='item'></CardItem>
         </div>
       </div>
     </section>
@@ -33,20 +25,44 @@
 </template>
 
 <script>
+import CardItem from '@/components/CardItem';
+import web3 from '@/web3';
+import {
+  getMe,
+  getMyCards
+} from '@/api';
+
 export default {
   name: 'MyCollectionPage',
   data: () => ({
-    itemIds: []
+    itemIds: [],
+    myaddress: "",
+    types: []
   }),
+  components: {
+    CardItem
+  },
+  async created() {
+    const my = await getMe();
+    this.myaddress = my.address;
+
+    const tokens = await getMyCards();
+    this.types = Array.from(new Set(tokens));
+    // console.log(this.types);
+
+    this.$http.get('static/girl_cards.json').then((response) => {
+    	console.log(this.types)
+		const allCards = response.body;
+	    for (var index in this.types) {
+		  this.itemIds.push(allCards[this.types[index]]);
+		}
+		// console.log(this.itemIds)
+    });
+  },
   methods: {
     gotoCoinProfile(code) {
       this.$router.push({ path: `/coin/${code}` })
     }
-  },
-  mounted() {
-    this.$http.get('static/girl_cards.json').then((response) => {
-      this.itemIds = response.body;
-    });
   }
 };
 </script>
@@ -85,7 +101,7 @@ export default {
   left: 0;
   width: 100%;
   text-align: center;
-	padding-top: 15%;
+	padding-top: 180px;
 }
 .useraddress {
 	color: #08567e;
@@ -100,33 +116,26 @@ export default {
 	padding-top: 30px;
 	padding-bottom: 50px;
 }
-.cardItemImg{
+/*.cardItemImg{
 	vertical-align:bottom;
 	cursor: pointer;
 }
 .priceSpan {
 	float:right;
 	padding-right: 20px;
-}
+}*/
 
 @media (max-width: 800px) {
-	.cardContainer {
+	.userContainer {
 		background-size: cover;
 		padding-top: 60%;
 	}
-	.charaimg{
-		width: 100%;
-	}
-	.btnContainer {
-		padding-top: 50%;
-	}
-
 	.section2div {
 		padding-top: 100px;
 	}
-	.cardItemImg{
+	/*.cardItemImg{
 		width: 100%;
-	}
+	}*/
 }
 </style>
 

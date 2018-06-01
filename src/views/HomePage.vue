@@ -8,8 +8,8 @@
 			</div>
 			<div class="btnContainer">
 				<div class="cardbtn">
-					<img class="btnimg" width="150" alt="" srcset="../assets/home_btn.png"/>
-					<p class="cardcount">卡包内剩余10000张卡</p>
+					<img class="btnimg" width="150" alt="" srcset="../assets/home_btn.png" @click="getCard()"/>
+					<p class="cardcount">卡包内剩余{{ leftCardCount }}张卡</p>
 				</div>
 			</div>
 		</div>
@@ -17,9 +17,9 @@
 
 	<section>
       <div class="columns is-multiline is-mobile section2div">
-        <div class="column is-4-desktop is-4-tablet is-12-mobile cardItem" v-for="item in itemIds" :key="item.id"
+        <div class="column is-4-desktop is-4-tablet is-12-mobile" v-for="item,index in itemIds" :key="item.id"
         @click="gotoCoinProfile(item.code)">
-        	<img class="cardItemImg" alt="" :src="item.img"/>
+        	<!-- <img class="cardItemImg" alt="" :src="item.img"/>
         	<div :style="{ backgroundColor: item.color, height: '50px' }">
         		<span>
 			        <a :style="{ lineHeight: '50px', color: item.textcolor, paddingLeft: '20px' }">{{ item.name }}{{ item.code }}</a>
@@ -27,7 +27,8 @@
 			    <span class="priceSpan">
 			        <a :style="{ lineHeight: '50px', color: item.textcolor }">= =USD</a>
 			    </span>
-        	</div>
+        	</div> -->
+        	<CardItem :item='item'></CardItem>
         </div>
       </div>
     </section>
@@ -36,14 +37,31 @@
 </template>
 
 <script>
+import CardItem from '@/components/CardItem';
+import web3 from '@/web3';
+import {
+  getLeftCardsCount,
+  drawCard
+} from '@/api';
+
 export default {
   name: 'HomePage',
   data: () => ({
-    itemIds: []
+    itemIds: [],
+    leftCardCount: 0
   }),
+  components: {
+    CardItem
+  },
+  async created() {
+    this.leftCardCount = await getLeftCardsCount();
+  },
   methods: {
     gotoCoinProfile(code) {
       this.$router.push({ path: `/coin/${code}` })
+    },
+    getCard() {
+    	drawCard("");
     }
   },
   mounted() {
@@ -98,6 +116,9 @@ export default {
     margin-left: auto;
     margin-right: auto;
 }
+.btnimg {
+    cursor: pointer;
+}
 .cardcount {
 	color: #5495c6;
 	font-size: 20px;
@@ -112,14 +133,14 @@ export default {
 	padding-top: 30px;
 	padding-bottom: 50px;
 }
-.cardItemImg{
+/*.cardItemImg{
 	vertical-align:bottom;
 	cursor: pointer;
-}
-.priceSpan {
+}*/
+/*.priceSpan {
 	float:right;
 	padding-right: 20px;
-}
+}*/
 
 @media (max-width: 800px) {
 	.cardContainer {
@@ -136,9 +157,9 @@ export default {
 	.section2div {
 		padding-top: 100px;
 	}
-	.cardItemImg{
+	/*.cardItemImg{
 		width: 100%;
-	}
+	}*/
 }
 </style>
 
