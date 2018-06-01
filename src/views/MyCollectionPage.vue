@@ -101,7 +101,7 @@ export default {
   left: 0;
   width: 100%;
   text-align: center;
-	padding-top: 15%;
+	padding-top: 180px;
 }
 .useraddress {
 	color: #08567e;
@@ -126,17 +126,10 @@ export default {
 }*/
 
 @media (max-width: 800px) {
-	.cardContainer {
+	.userContainer {
 		background-size: cover;
 		padding-top: 60%;
 	}
-	.charaimg{
-		width: 100%;
-	}
-	.btnContainer {
-		padding-top: 50%;
-	}
-
 	.section2div {
 		padding-top: 100px;
 	}
