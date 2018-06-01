@@ -125,10 +125,10 @@ export default {
 	vertical-align:bottom;
 	cursor: pointer;
 }*/
-.priceSpan {
+/*.priceSpan {
 	float:right;
 	padding-right: 20px;
-}
+}*/
 
 @media (max-width: 800px) {
 	.cardContainer {
