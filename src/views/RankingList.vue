@@ -138,7 +138,7 @@ export default {
     height: 30px;
 }
  
- .rank, .id ,.key, .time{
+ .rank, .id, .key, .time{
      height: 60px;
 }
  .id ,.key,.time{
