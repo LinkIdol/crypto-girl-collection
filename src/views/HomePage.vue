@@ -13,7 +13,7 @@
 				</div>
 			</div>
 		</div>
-    </section>
+  </section>
 
 	<section>
       <div class="columns is-multiline is-mobile section2div">
@@ -61,8 +61,9 @@ export default {
     gotoCoinProfile(code) {
       this.$router.push({ path: `/coin/${code}` })
     },
-    getCard() {
-    	drawCard("");
+    async getCard() {
+    	const drawres = await drawCard("")
+      alert("抽卡成功！快去我的收藏看看吧。");
     }
   },
   mounted() {

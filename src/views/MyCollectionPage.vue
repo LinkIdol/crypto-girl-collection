@@ -4,7 +4,7 @@
 	<section>
 		<div class="userContainer">
 			<div class="usericon">
-				<img class="iconimg" alt="" width="100" srcset="../assets/usericon.jpg"/>
+				<img class="iconimg" alt="" width="100" :src="getAvatar"/>
 			</div>
 			<div class="usercontent">
 				<p class="useraddress">{{ myaddress }}</p>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import Dravatar from 'dravatar';
 import CardItem from '@/components/CardItem';
 import web3 from '@/web3';
 import {
@@ -41,6 +42,12 @@ export default {
   }),
   components: {
     CardItem
+  },
+  asyncComputed: {
+    async getAvatar() {
+      const uri = await Dravatar(this.myaddress);
+      return uri;
+    }
   },
   async created() {
     const my = await getMe();
