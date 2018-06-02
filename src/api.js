@@ -65,13 +65,12 @@ export const getLeftCardsCount = async () => {
 // export const drawCard = referrer => new Promise((resolve, reject) => {
 export const drawCard = async (referrer) => {
   const address = (await Promise.promisify(web3.eth.getAccounts)())[0];
-  IdolDrawContract.methods.buy(referrer).send({
+  const res = await IdolDrawContract.methods.buy(referrer).send({
     from:address,
     value: 1000000000000000,
     gas: 100000
-  }).then(function(result){
-      console.log(result)
   });
+  return res;
   // (err, result) => (err ? reject(err) : resolve(result)));
 };
 
