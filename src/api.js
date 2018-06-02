@@ -9,9 +9,14 @@ import IdolDrawABI from './contract/abi/IdolDraw.json';
 
 // Sometimes, web3.version.network might be undefined,
 // as a workaround, use defaultNetwork in that case.
-const network = config.network[web3.version.network] || config.defaultNetwork;
-const linkidolContract = web3.eth.contract(linkidolABI).at(network.linkidol);
-const IdolDrawContract = web3.eth.contract(IdolDrawABI).at(network.IdolDraw);
+var network = config.defaultNetwork;
+var linkidolContract = new web3.eth.Contract(linkidolABI,network.linkidol);
+var IdolDrawContract = new web3.eth.Contract(IdolDrawABI,network.IdolDraw);
+web3.eth.net.getId().then(function (result) {
+    network = config.network[result];
+    linkidolContract = new web3.eth.Contract(linkidolABI,network.linkidol);
+    IdolDrawContract = new web3.eth.Contract(IdolDrawABI,network.IdolDraw);
+});
 
 let store = [];
 let isInit = false;
@@ -51,17 +56,24 @@ export const getLeftCardsCount = async () => {
   // await Promise.promisify(IdolDrawContract.setContractAddr)("0x39f8a3ff4e5097e57c777857697836079a51dc1d");
   // await Promise.promisify(linkidolContract.addAdmin)("0xc6d6d2c0eb7d64467ad02efc54496cdfc2fe55d6");
 
-  const ids = await Promise.promisify(linkidolContract.totalSupply)();
-  return ids.c[0];
+  // const ids = await Promise.promisify(linkidolContract.totalSupply)();
+  // return ids.c[0];
+  const ids = await linkidolContract.methods.totalSupply().call();
+  return ids;
 }
 
-export const drawCard = referrer => new Promise((resolve, reject) => {
-  IdolDrawContract.buy(referrer,{
-    value: web3.toWei('1000000', 'Gwei'),
+// export const drawCard = referrer => new Promise((resolve, reject) => {
+export const drawCard = async (referrer) => {
+  const address = (await Promise.promisify(web3.eth.getAccounts)())[0];
+  IdolDrawContract.methods.buy(referrer).send({
+    from:address,
+    value: 1000000000000000,
     gas: 100000
-  },
-  (err, result) => (err ? reject(err) : resolve(result)));
-});
+  }).then(function(result){
+      console.log(result)
+  });
+  // (err, result) => (err ? reject(err) : resolve(result)));
+};
 
 export const getMyCards = async () => {
   if (!window.web3) {
@@ -70,20 +82,21 @@ export const getMyCards = async () => {
   const me = {};
   me.address = (await Promise.promisify(web3.eth.getAccounts)())[0];
 
-  const ids = await Promise.promisify(linkidolContract.tokensOf)(me.address)
-    const luckyTokens = await Promise.all(ids.map(id => getCardsType(id)));
-    // console.log(luckyTokens)
-    return luckyTokens;
-  
+  // const ids = await Promise.promisify(linkidolContract.tokensOf)(me.address)
+  const ids = await linkidolContract.methods.tokensOf(me.address).call();
+  const luckyTokens = await Promise.all(ids.map(id => getCardsType(id)));
+  // console.log(luckyTokens)
+  return luckyTokens;
 }
 export const getCardsType = async (id) => {
-  const idnum = id.toNumber();
+  const idnum = id;
   const item = {};
   item.id = Number(idnum);
-  const typenum = await Promise.promisify(IdolDrawContract.typesOf)(idnum);
-  item.type = typenum.toNumber();
+  // const typenum = await Promise.promisify(IdolDrawContract.typesOf)(idnum);
+  const typenum = await IdolDrawContract.methods.typesOf(idnum).call();
+  item.type = typenum;
   // item.approved = await isApproved(id);
   // console.log(item)
   // return item;
-  return typenum.toNumber();
+  return typenum;
 };

@@ -54,7 +54,8 @@ export default {
     CardItem
   },
   async created() {
-    this.leftCardCount = await getLeftCardsCount();
+    const totlecount = await getLeftCardsCount();
+    this.leftCardCount = 10000 - totlecount;
   },
   methods: {
     gotoCoinProfile(code) {
