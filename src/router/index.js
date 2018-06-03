@@ -14,6 +14,7 @@ import HomePage from '@/views/HomePage';
 import MyCollectionPage from '@/views/MyCollectionPage';
 import CoinProfile from '@/views/CoinProfile';
 import RankingList from '@/views/RankingList';
+import CoinGirl from '@/views/CoinGirl';
 Vue.use(Router);
 
 export default new Router({
@@ -30,9 +31,9 @@ export default new Router({
     //   component: ListView,
     // },
     {
-      name: 'CoinProfile',
+      name: 'CoinGirl',
       path: '/coin/:name',
-      component: CoinProfile,
+      component: CoinGirl,
     },
     {
       name: 'Collection',
