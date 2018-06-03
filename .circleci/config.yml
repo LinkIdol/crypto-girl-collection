@@ -46,7 +46,7 @@ jobs:
           root: ~/repo/
           paths:
             - dist
-  deploy:
+  deploy-master:
     <<: *defaults
     steps:
       - add_ssh_keys:
@@ -68,24 +68,51 @@ jobs:
             git add .
             git commit -m "Update website"
             git push --force --quiet git@github.com:LinkIdol/website-eth.git master:master
-      
+  deploy-testing:
+    <<: *defaults
+    steps:
+      - attach_workspace: 
+          at: ~/repo/dist
+      - run:
+          # I don't want to bother with Github Page Deployment again. 
+          # I am a front end hipster after all. ~_^
+          name: Deploy to Surge.sh
+          command: |
+            sudo npm i -g surge          
+            cd ./dist/dist/
+            # echo "testing.linkidol.pro" >> CNAME # add custom domain
+            surge --project ./ --domain testing.linkidol.pro      
 
 
 workflows:
   version: 2
-  build:
+  build-test:
     jobs:
       - build:
           filters:
             branches:
-              ignore: /master/
-  build-and-deploy:
+              ignore: 
+                - /testing/
+                - /master/
+  build-and-deploy-to-testing:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /testing/
+      - deploy-testing:
+          requires:
+            - build
+          filters:
+            branches:
+              only: /testing/
+  build-and-deploy-to-master:
     jobs:
       - build:
           filters:
             branches:
               only: /master/
-      - deploy:
+      - deploy-master:
           requires:
             - build
           filters:
