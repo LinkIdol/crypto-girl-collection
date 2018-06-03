@@ -45,6 +45,11 @@ export default new Router({
       path: '/RankingList',
       component: RankingList,
     },
+    {
+      name: 'CoinGirl',
+      path: '/CoinGirl',
+      component: CoinGirl,
+    },
     // {
     //   name: 'Item',
     //   path: '/item/:id(\\d+)',
