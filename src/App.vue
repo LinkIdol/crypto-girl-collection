@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie';
+import web3 from '@/web3';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { mapActions } from 'vuex';
@@ -22,6 +24,13 @@ export default {
     Footer,
   },
   async created() {
+    const firstReferrer = Cookie.get('referrer');
+    const referrer = this.$route.query.ref;
+    // Cookie referrer 里保存的是第一位分享给当前用户的地址
+    if (!firstReferrer && web3.utils.isAddress(referrer)) {
+      Cookie.set('referrer', referrer, { expires: 356 });
+    }
+
     await this.setContract();
   },
   methods: {
