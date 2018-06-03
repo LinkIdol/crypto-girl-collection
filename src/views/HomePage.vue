@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie';
 import CardItem from '@/components/CardItem';
 import web3 from '@/web3';
 import {
@@ -62,9 +63,10 @@ export default {
       this.$router.push({ path: `/coin/${code}` })
     },
     async getCard() {
-    	const drawres = await drawCard("")
-      alert("抽卡成功！快去我的收藏看看吧。");
-    }
+      const referrer = Cookie.get('referrer') || '';
+      const drawres = await drawCard(referrer);
+      alert('抽卡成功！快去我的收藏看看吧。');
+    },
   },
   mounted() {
     this.$http.get('static/girl_cards.json').then((response) => {
