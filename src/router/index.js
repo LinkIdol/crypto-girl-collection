@@ -14,6 +14,7 @@ import HomePage from '@/views/HomePage';
 import MyCollectionPage from '@/views/MyCollectionPage';
 import CoinProfile from '@/views/CoinProfile';
 import RankingList from '@/views/RankingList';
+import CoinGirl from '@/views/CoinGirl';
 Vue.use(Router);
 
 export default new Router({
@@ -43,6 +44,11 @@ export default new Router({
       name: 'RankingList',
       path: '/RankingList',
       component: RankingList,
+    },
+    {
+      name: 'CoinGirl',
+      path: '/CoinGirl',
+      component: CoinGirl,
     },
     // {
     //   name: 'Item',
