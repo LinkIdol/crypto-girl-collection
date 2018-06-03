@@ -18,7 +18,7 @@
 	<section>
       <div class="columns is-multiline is-mobile section2div">
         <div class="column is-4-desktop is-4-tablet is-12-mobile" v-for="item,index in itemIds" :key="item.id"
-        @click="gotoCoinProfile(item.code)">
+        @click="gotoCoinProfile(item.id)">
         	<!-- <img class="cardItemImg" alt="" :src="item.img"/>
         	<div :style="{ backgroundColor: item.color, height: '50px' }">
         		<span>
@@ -28,10 +28,10 @@
 			        <a :style="{ lineHeight: '50px', color: item.textcolor }">= =USD</a>
 			    </span>
         	</div> -->
-        	<CardItem :item='item'></CardItem>
+        	<CardItem :item='item' :hasMouseOver='true'></CardItem>
         </div>
       </div>
-    </section>
+  </section>
 
 </div>
 </template>

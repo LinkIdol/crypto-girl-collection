@@ -16,7 +16,7 @@
       <div class="columns is-multiline is-mobile section2div">
         <div class="column is-4-desktop is-4-tablet is-12-mobile cardItem" v-for="item in itemIds" :key="item.id"
         @click="gotoCoinProfile(item.code)">
-        	<CardItem :item='item'></CardItem>
+        	<CardItem :item='item' :hasMouseOver='true'></CardItem>
         </div>
       </div>
     </section>

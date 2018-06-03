@@ -18,7 +18,7 @@ import request from 'superagent';
 
 export default {
   name: 'card-item',
-  props: ['item'],
+  props: ['item', 'hasMouseOver'],
   data() {
     return {
       isMouseOver: false,
@@ -35,22 +35,32 @@ export default {
     	}
     }
   },
-  async created() {
-    await this.getCoinMarketData();
-  },
+  // async mounted() {
+  //   await this.getCoinMarketData();
+  // },
   methods: {
   	overShow() {
+      if(!this.hasMouseOver) return;
   		this.isMouseOver = !this.isMouseOver;
   	},
   	outHide() {
+      if(!this.hasMouseOver) return;
   		this.isMouseOver = !this.isMouseOver;
   	},
     async getCoinMarketData() {
     	if(this.item.idforapi != 0){
-			const { body } = await request
-				.get(`https://api.coinmarketcap.com/v2/ticker/${this.item.idforapi}/`);
-				this.price = body["data"]["quotes"]["USD"]["price"];
-		}
+  			const { body } = await request
+  				.get(`https://api.coinmarketcap.com/v2/ticker/${this.item.idforapi}/`);
+  				this.price = body["data"]["quotes"]["USD"]["price"];
+  		}
+    }
+  },
+  watch: {
+    '$props':{
+      handler: function (val, oldVal) { 
+        this.getCoinMarketData();
+      },
+      deep: true
     }
   }
 };
@@ -58,7 +68,7 @@ export default {
 <style scoped>
 .cardItemImg{
 	vertical-align:bottom;
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 .priceSpan {
 	float:right;

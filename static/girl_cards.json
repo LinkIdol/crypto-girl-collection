@@ -1,6 +1,6 @@
 {
 	"0":{
-                "id": 1,
+                "id": 0,
                 "name": "质数币",
                 "code": "XPM",
                 "color": "#ebe5b0",
@@ -11,11 +11,11 @@
                 "birthday": "2013年07月12日",
                 "consensus": "工作量证明 | Proof-of-Work（POW）",
                 "maxprice": "7.27美元",
-                "detailimg": "../../static/assets/girlcards/detail_xpm.png",
+                "detailimg": "../../static/assets/girlcards/detail_xpm.jpg",
                 "story": "质数币就是作为让计算机寻找新质数的奖励。”质数币“是第一个基于科学计算的加密货币。它的“工作量证明算法”是独一无二的，并且百分百保留“去中心化”的特性。质数币的出现意味着加密货币可以产生其他的科学计算价值，这是很大的突破。"
 	},
 	"1":{
-                "id": 2,
+                "id": 1,
                 "name": "萨莉",
                 "code": "SARI",
                 "color": "#aedfe8",
@@ -26,11 +26,11 @@
                 "birthday": "2018年5月10号",
                 "consensus": "SARI是个吉祥物",
                 "maxprice": "无",
-                "detailimg": "../../static/assets/girlcards/detail_sari.png",
+                "detailimg": "../../static/assets/girlcards/detail_sari.jpg",
                 "story": "这个企划开始诞生于2018年2月，新年前夕的夜晚。岛岛：“我们做个区块链游戏吧”。Link：“可是用什么角色呢？”。岛岛：“对哦。。”。岛岛：“那我们就把加密货币拟人化吧”。Link：“那币娘宇宙需要一个神吧~最好是看起来来自未来，且无害的那种。”。3个月后，SARI.诞生了"
 	},
 	"2":{
-                "id": 3,
+                "id": 2,
                 "name": "狗狗币",
                 "code": "DGC",
                 "color": "#e8c0af",
@@ -41,11 +41,11 @@
                 "birthday": "2013年12月08日",
                 "consensus": "工作量证明 | Proof-of-Work（POW）",
                 "maxprice": "0.017586美元",
-                "detailimg": "../../static/assets/girlcards/detail_doge.png",
+                "detailimg": "../../static/assets/girlcards/detail_doge.jpg",
                 "story": "狗狗币起源于一次玩笑，但是却改因此变了世界。DogeCoin就是以最流行的doge表情包为logo的。只是因为doge表情包非常火爆，于是帕尔默就买下了dogecoin的域名。另一位波兰的加密货币爱好者觉得这种行为艺术非常有趣，就着手做成了这种全新的加密货币。狗狗币发行数量非常巨大，单价很低，因此被用于支付小费红遍了当时的互联网。并且狗狗币还完成了众多慈善活动。"
 	},
 	"3":{
-                "id": 4,
+                "id": 3,
                 "name": "区块链",
                 "code": "BlockChain",
                 "color": "#aec9e9",
@@ -56,11 +56,11 @@
                 "birthday": "2008年01月03日",
                 "consensus": "区块链不是一种币",
                 "maxprice": "无",
-                "detailimg": "../../static/assets/girlcards/detail_block.png",
+                "detailimg": "../../static/assets/girlcards/detail_block.jpg",
                 "story": "区块链和比特币是同时诞生的。区块链是为了实现比特币的构思而被发明出来的底层技术。其实发明区块链所必须的技术在世界上早已经存在：1.寻找地外生命项目用到的：分布式计算网络技术。2.密码学中常用的：非对称加密技术。3.还有喜欢下载小电影的人熟悉的：P2P点对点网络。“中本聪”天才般将“工作量证明（POW）”引入了其中，也就是我们常听说的“挖矿”，将使用网络的人成为利益共同体，共同维护区块链网络的正常运行。"
 	},
 	"4":{
-                "id": 5,
+                "id": 4,
                 "name": "以太币",
                 "code": "ETH",
                 "color": "#bbe7ae",
@@ -71,11 +71,11 @@
                 "birthday": "2014年07月24日",
                 "consensus": "工作量证明 | Proof-of-Work（POW）",
                 "maxprice": "1448.18美元",
-                "detailimg": "../../static/assets/girlcards/detail_eth.png",
+                "detailimg": "../../static/assets/girlcards/detail_eth.jpg",
                 "story": "2013年年末，19岁的Vitalik Buterin给他的好友们发了一份白皮书，建议设计一种新的比特币。这款新的比特币将基于通用的编程语言，可以用来创建各种各样的应用，比如社交、交易、游戏……Vitalik的想法很快就在比特币社区里炸开了锅。V神用10万美元Thiel奖学金去开发一个去中心化、基于区块链技术的计算平台，取名以太坊(Etherum)。还为以太坊设计了一种新的加密货币币种—以太币(Ether)。2015年，以太坊正式上线。"
 	},
 	"5":{
-                "id": 6,
+                "id": 5,
                 "name": "比特币",
                 "code": "BTC",
                 "color": "#ebd4b0",
@@ -86,7 +86,7 @@
                 "birthday": "2009年01月03日",
                 "consensus": "工作量证明 | Proof-of-Work（POW）",
                 "maxprice": "1.96万美元",
-                "detailimg": "../../static/assets/girlcards/detail_btc.png",
+                "detailimg": "../../static/assets/girlcards/detail_btc.jpg",
                 "story": "2008年11月，一位神秘人（ID：中本聪）在“加密朋克论坛”发布了自己的加密货币设想。这种加密货币需要在区块链上进行一种叫做“挖矿”的行为，每次新的区块被挖出来，都会奖励矿工加密货币。2009年1月3日，中本聪挖掘出了第一个区块的同时，最初的50枚比特币就这样诞生了！一个新的时代开启了。"
 	}
 }
