@@ -18,9 +18,6 @@ export default {
   setLocale(state, locale) {
     state.locale = locale;
   },
-  setContract(state, contract) {
-    state.contract = contract;
-  },
   SET_ME(state, me) {
     state.me = me;
   },
