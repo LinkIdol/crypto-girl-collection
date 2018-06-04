@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import web3 from '@/web3';
+import Cookie from 'js-cookie';
 import * as config from './web3/config';
 import linkidolABI from './contract/abi/linkidol.json';
 import IdolDrawABI from './contract/abi/IdolDraw.json';
@@ -20,10 +21,10 @@ export const getMe = async () => {
     throw Error('NO_METAMASK');
   }
   const me = {};
-  me.address = (await Promise.promisify(web3.eth.getAccounts)())[0];
-
+  const accounts = await web3.eth.getAccounts();
+  me.address = accounts[0];
   if (me.address) {
-    me.balance = await Promise.promisify(web3.eth.getBalance)(me.address);
+    me.balance = await web3.eth.getBalance(me.address);
     return me;
   }
   throw Error('METAMASK_LOCKED');
@@ -34,7 +35,18 @@ export const getLeftCardsCount = async () => {
   return ids;
 };
 
-// export const drawCard = referrer => new Promise((resolve, reject) => {
+export const getLocale = async () =>
+  Cookie.get('locale') ||
+    (
+      navigator.language ||
+        navigator.browserLanguage ||
+        navigator.userLanguage
+    ).toLowerCase();
+
+export const setLocale = async (locale) => {
+  Cookie.set('locale', locale, { expires: 365 });
+};
+
 export const drawCard = async (referrer) => {
   const address = (await Promise.promisify(web3.eth.getAccounts)())[0];
   const res = await IdolDrawContract.methods.buy(referrer).send({
@@ -43,14 +55,12 @@ export const drawCard = async (referrer) => {
     gas: 100000,
   });
   return res;
-  // (err, result) => (err ? reject(err) : resolve(result)));
 };
 
 export const getCardsType = async (id) => {
   const idnum = id;
   const item = {};
   item.id = Number(idnum);
-  // const typenum = await Promise.promisify(IdolDrawContract.typesOf)(idnum);
   const typenum = await IdolDrawContract.methods.typesOf(idnum).call();
   item.type = typenum;
   // item.approved = await isApproved(id);
