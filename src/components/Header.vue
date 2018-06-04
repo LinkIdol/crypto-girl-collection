@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { getNetwork, getAnnouncements } from '@/api';
+import { getNetwork } from '@/api';
 
 export default {
   name: 'Header',
@@ -110,14 +110,14 @@ export default {
     // if (!network.contract) {
     //   alert(`Unsupported ${network.name}`);
     // }
-    const infos = [];
-    const announcements = await getAnnouncements();
-    announcements.forEach(({ type, content }) => {
-      if (type === 'info') {
-        infos.push(content);
-      }
-    });
-    this.infos = infos;
+    // const infos = [];
+    // const announcements = await getAnnouncements();
+    // announcements.forEach(({ type, content }) => {
+    //   if (type === 'info') {
+    //     infos.push(content);
+    //   }
+    // });
+    // this.infos = infos;
   },
   computed: {
     locale: {
