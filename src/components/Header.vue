@@ -15,6 +15,12 @@
 
         <router-link
                      class="navbar-item"
+                     :to="{ name: 'Referral' }">
+          推荐计划 <strong class="tag is-black"> 有佣金 </strong>
+        </router-link>
+
+        <router-link
+                     class="navbar-item"
                      :to="{ name: 'RankingList' }">
           排行榜
         </router-link>
