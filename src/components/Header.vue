@@ -107,9 +107,9 @@ export default {
       return;
     }
     this.network = network;
-    if (!network.contract) {
-      alert(`Unsupported ${network.name}`);
-    }
+    // if (!network.contract) {
+    //   alert(`Unsupported ${network.name}`);
+    // }
     const infos = [];
     const announcements = await getAnnouncements();
     announcements.forEach(({ type, content }) => {
@@ -127,7 +127,7 @@ export default {
         const lang = i18n.find(
           item =>
             item.locale === locale ||
-            item.aliases.some(alias => alias === locale),
+                        item.aliases.some(alias => alias === locale),
         );
         return lang ? lang.locale : null;
       },
@@ -149,8 +149,8 @@ export default {
 
 <style scoped>
 .navbar {
-  background-color: #91cbe9;
-  color: #fafafa !important;
+    background-color: #91cbe9;
+    color: #fafafa !important;
 }
 .navbar-item {
     color: #0787c8 !important;
