@@ -1,20 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import ItemView from '@/views/ItemView';
-import ListView from '@/views/ListView';
-import LoginView from '@/views/LoginView';
-import FaqView from '@/views/FaqView';
-import UserView from '@/views/UserView';
-import TermView from '@/views/TermView';
-import PrivacyView from '@/views/PrivacyView';
-import BirthdayGiftView from '@/views/BirthdayGiftView';
-import LuckyDraw from '@/views/LuckyDraw';
+// import ItemView from '@/views/ItemView';
+// import ListView from '@/views/ListView';
+// import LoginView from '@/views/LoginView';
+// import FaqView from '@/views/FaqView';
+// import UserView from '@/views/UserView';
+// import TermView from '@/views/TermView';
+// import PrivacyView from '@/views/PrivacyView';
+// import BirthdayGiftView from '@/views/BirthdayGiftView';
+// import LuckyDraw from '@/views/LuckyDraw';
 
 import HomePage from '@/views/HomePage';
+import Referral from '@/views/Referral';
 import MyCollectionPage from '@/views/MyCollectionPage';
-import CoinProfile from '@/views/CoinProfile';
+// import CoinProfile from '@/views/CoinProfile';
 import RankingList from '@/views/RankingList';
 import CoinGirl from '@/views/CoinGirl';
+
 Vue.use(Router);
 
 export default new Router({
@@ -25,11 +27,11 @@ export default new Router({
       path: '/',
       component: HomePage,
     },
-    // {
-    //   name: 'GirlList',
-    //   path: '/list',
-    //   component: ListView,
-    // },
+    {
+      name: 'Referral',
+      path: '/referral',
+      component: Referral,
+    },
     {
       name: 'CoinGirl',
       path: '/coin/:name',
