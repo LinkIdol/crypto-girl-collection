@@ -17,7 +17,7 @@
                       button.button.is-large.is-circle
                         span.icon.is-medium
                           i.iconfont.icon-wechat
-                      button.button.is-large.is-circle
+                      a.button.is-large.is-circle(:href="getFB")
                         span.icon.is-medium
                           i.iconfont.icon-Facebook
                       button.button.is-large.is-circle
@@ -29,7 +29,7 @@
                       button.button.is-large.is-circle
                         span.icon.is-medium
                           i.iconfont.icon-qq
-                      button.button.is-large.is-circle
+                      a.button.is-large.is-circle(:href="getLine")
                         span.icon.is-medium
                           i.iconfont.icon-line
                       button.button.is-large.is-circle(:data-clipboard-text="referLink"
@@ -70,25 +70,15 @@ export default {
       const uri = await QRCode.toDataURL(referLink);
       return uri;
     },
-    async getReferPercent() {
-      /**
-             * Replace with your logic here.
-             * I think you should interact with contract to get percentage
-             * @author: Frank Wei
-             */
-      const fake = () =>
-        new Promise((res) => {
-          setTimeout(() => res('10'), 1000);
-        });
-      const result = await fake();
-      return result;
-    },
   },
 
   computed: {
     ...mapState({
       myAddress: ({ me }) => (me ? me.address : ''),
     }),
+    getReferPercent() {
+      return 3;
+    },
     getReferrer() {
       return this.$route.params.address;
     },
@@ -102,6 +92,18 @@ export default {
         return `${website}/draw/${this.myAddress}`;
       }
       return '请解锁 MetaMask 钱包再刷新访问';
+    },
+    getSafeLink() {
+      return encodeURIComponent(this.referLink);
+    },
+    getFB() {
+      const { getSafeLink } = this;
+      return `https://www.facebook.com/sharer/sharer.php?u=${getSafeLink}`;
+    },
+    getLine() {
+      return `https://social-plugins.line.me/lineit/share?url=${
+        this.getSafeLink
+      }`;
     },
   },
   methods: {
