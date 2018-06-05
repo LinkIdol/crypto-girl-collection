@@ -12,23 +12,23 @@
                             input.input(type="text" :value="referLink" disabled)
                         .control
                             button.button.is-success(:data-clipboard-text="referLink")| 复制链接
-                    h1.title| Share to your friends
+                    h1.title| 分享到社交媒体
                     .buttons
-                      button.button.is-large.is-circle
+                      button.button.is-large.is-circle(@click="scanQRCode")
                         span.icon.is-medium
                           i.iconfont.icon-wechat
+                      button.button.is-large.is-circle(@click="scanQRCode")
+                        span.icon.is-medium
+                          i.iconfont.icon-qq
                       a.button.is-large.is-circle(:href="getFB")
                         span.icon.is-medium
                           i.iconfont.icon-Facebook
-                      button.button.is-large.is-circle
+                      a.button.is-large.is-circle(:href="getTwitter")
                         span.icon.is-medium
                           i.iconfont.icon-twitter
-                      button.button.is-large.is-circle
+                      a.button.is-large.is-circle(:href="getWeibo")
                         span.icon.is-medium
                           i.iconfont.icon-weibo
-                      button.button.is-large.is-circle
-                        span.icon.is-medium
-                          i.iconfont.icon-qq
                       a.button.is-large.is-circle(:href="getLine")
                         span.icon.is-medium
                           i.iconfont.icon-line
@@ -36,10 +36,16 @@
                        @click="clipURL")
                         span.icon.is-medium
                           i.iconfont.icon-link
-                      img(:src="generateQrCode")
+                      //- img(:src="generateQrCode")
+
                     //- article.message.is-dark
                     //-   .message-header| 你的分享邀请码
                     //-   .message-body
+                    b-notification(:active.sync="isActive")
+                      h1.title| 操作指示
+                      h2.subtitle| 请扫描下方的二维码，选择分享 或 在对话分享链接
+                      img(:src="generateQrCode")
+
     #referral(v-else)
         section.hero.is-medium
             .hero-body
@@ -71,7 +77,7 @@ export default {
       return uri;
     },
   },
-
+  data: () => ({ isActive: false }),
   computed: {
     ...mapState({
       myAddress: ({ me }) => (me ? me.address : ''),
@@ -101,9 +107,18 @@ export default {
       return `https://www.facebook.com/sharer/sharer.php?u=${getSafeLink}`;
     },
     getLine() {
-      return `https://social-plugins.line.me/lineit/share?url=${
-        this.getSafeLink
-      }`;
+      const { getSafeLink } = this;
+      return `https://social-plugins.line.me/lineit/share?url=${getSafeLink}`;
+    },
+    getTwitter() {
+      const { getSafeLink } = this;
+      const shareStr = `我在玩 LinkIdol, 要来一发吗？ ${getSafeLink}`;
+      return `https://twitter.com/intent/tweet?text=${shareStr}`;
+    },
+    getWeibo() {
+      const { getSafeLink } = this;
+      const shareStr = `我在玩 LinkIdol, 要来一发吗？ ${getSafeLink}`;
+      return `http://service.weibo.com/share/share.php?title=${shareStr}`;
     },
   },
   methods: {
@@ -113,6 +128,9 @@ export default {
         message: '快去分享给你的好朋友获得返现吧',
         type: 'is-success',
       });
+    },
+    scanQRCode() {
+      this.isActive = true;
     },
   },
 };
