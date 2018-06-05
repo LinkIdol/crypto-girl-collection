@@ -20,16 +20,16 @@
                       button.button.is-large.is-circle(@click="scanQRCode")
                         span.icon.is-medium
                           i.iconfont.icon-qq
-                      a.button.is-large.is-circle(:href="getFB")
+                      a.button.is-large.is-circle(:href="getFB" target="_blank")
                         span.icon.is-medium
                           i.iconfont.icon-Facebook
-                      a.button.is-large.is-circle(:href="getTwitter")
+                      a.button.is-large.is-circle(:href="getTwitter" target="_blank")
                         span.icon.is-medium
                           i.iconfont.icon-twitter
-                      a.button.is-large.is-circle(:href="getWeibo")
+                      a.button.is-large.is-circle(:href="getWeibo" target="_blank")
                         span.icon.is-medium
                           i.iconfont.icon-weibo
-                      a.button.is-large.is-circle(:href="getLine")
+                      a.button.is-large.is-circle(:href="getLine" target="_blank")
                         span.icon.is-medium
                           i.iconfont.icon-line
                       button.button.is-large.is-circle(:data-clipboard-text="referLink"
@@ -41,7 +41,7 @@
                     //- article.message.is-dark
                     //-   .message-header| 你的分享邀请码
                     //-   .message-body
-                    b-notification(:active.sync="isActive")
+                    b-notification(:active.sync="isActive" type="is-info")
                       h1.title| 操作指示
                       h2.subtitle| 请扫描下方的二维码，选择分享 或 在对话分享链接
                       img(:src="generateQrCode")
