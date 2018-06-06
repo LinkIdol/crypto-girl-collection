@@ -12,7 +12,6 @@
     <div class="ranking-ul"> 
      <ul style=" background-color:#97ceea; height: 30px;">
         <li class="rank1" style=" line-height: 27px;">名次</li> 
-        <li class="id1" > ID</li>
         <li class="key1" > 钱包地址</li>
         <li class="time1" > 合成时间</li>   
     </ul>
@@ -20,9 +19,8 @@
     <div  v-for="( item, index ) in items" :key="item.id" class="ranking-ul"> 
       <ul>
         <li v-bind:id="'ranking'+index" class="rank"> <b>{{ index+1 }}</b></li> 
-        <li class="id"> {{ item.ID }}</li>
-        <li class="key"> {{ item.key }}</li>
-        <li class="time"> {{ item.time }}</li>   
+        <li class="key"> {{ item.address }}</li>
+        <li class="time"> {{ item.collecttime }}</li>   
       </ul>
    </div>
 </div>
@@ -38,41 +36,16 @@ export default {
              return "rank_"+ index
          }
      },
-       items: [
-      {   ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-      { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-      { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-       { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-       { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-       { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-       { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-       { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-       { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' },
-      { ID: 'DanielYang',
-      key:'1Eb84h8LnKncKjKLVRztDP2FXE1ixAbXQq',
-      time:'2018.0524.18:32' }
-    ],
+       items: [],
      
    }
- }
+ },
+  async created() {
+    this.$http.get('http://localhost:8888/getranklist.php').then((response) => {
+        console.log(response.body)
+        this.items = response.body;
+    });
+  }
 }
 
 </script>
@@ -159,7 +132,7 @@ export default {
      margin-top: 25px;
 }
 .key, .key1{
-     width: 400px;
+     width: 600px;
 }
 .time, .time1{
      width: 200px;
