@@ -15,7 +15,6 @@ import Cookie from 'js-cookie';
 import web3 from '@/web3';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -30,12 +29,8 @@ export default {
     if (!firstReferrer && web3.utils.isAddress(referrer)) {
       Cookie.set('referrer', referrer, { expires: 356 });
     }
-
-    await this.setContract();
   },
-  methods: {
-    ...mapActions(['setContract']),
-  },
+  methods: {},
   computed: {
     key() {
       return this.$route.name !== undefined
@@ -48,9 +43,9 @@ export default {
 
 <style>
 .main-container {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 </style>
