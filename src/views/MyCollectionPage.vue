@@ -58,8 +58,8 @@ export default {
     // console.log(this.types);
 
     this.$http.get('static/girl_cards.json').then((response) => {
-    	console.log(this.types)
-		const allCards = response.body;
+    	// console.log(this.types)
+		  const allCards = response.body;
 	    for (var index in this.types) {
 		  this.itemIds.push(allCards[this.types[index]]);
 		}
@@ -69,6 +69,18 @@ export default {
   methods: {
     gotoCoinProfile(code) {
       this.$router.push({ path: `/coin/${code}` })
+    }
+  },
+  watch: {
+    types(newTypes) {
+      console.log("newTypes:"+newTypes)
+      if(newTypes.length >= 6) {
+        var formData = new FormData();
+        formData.append('address', this.myaddress);
+        this.$http.post('http://localhost:8888/addrank.php',formData)
+                  .then((response) => {
+                  })
+      }
     }
   }
 };
