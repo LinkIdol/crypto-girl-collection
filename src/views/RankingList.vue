@@ -7,20 +7,20 @@
          <div class="line"></div>
          <div class="line1"> {{title}}</div>
          <div class="line"></div>
-    </div> 
     </div>
-    <div class="ranking-ul"> 
+    </div>
+    <div class="ranking-ul">
      <ul style=" background-color:#97ceea; height: 30px;">
-        <li class="rank1" style=" line-height: 27px;">名次</li> 
+        <li class="rank1" style=" line-height: 27px;">名次</li>
         <li class="key1" > 钱包地址</li>
-        <li class="time1" > 合成时间</li>   
+        <li class="time1" > 合成时间</li>
     </ul>
      </div>
-    <div  v-for="( item, index ) in items" :key="item.id" class="ranking-ul"> 
+    <div  v-for="( item, index ) in items" :key="item.id" class="ranking-ul">
       <ul>
-        <li v-bind:id="'ranking'+index" class="rank"> <b>{{ index+1 }}</b></li> 
+        <li v-bind:id="'ranking'+index" class="rank"> <b>{{ index+1 }}</b></li>
         <li class="key"> {{ item.address }}</li>
-        <li class="time"> {{ item.collecttime }}</li>   
+        <li class="time"> {{ item.collecttime }}</li>
       </ul>
    </div>
 </div>
@@ -28,160 +28,170 @@
 <script>
 export default {
   name: 'RankingList',
-   data(){
-       return{
-        title:"排行榜",
-        methods :{
-         ranking: function(index){
-             return "rank_"+ index
-         }
-     },
-       items: [],
-     
-   }
- },
+  data() {
+    return {
+      title: '排行榜',
+      methods: {
+        ranking(index) {
+          return `rank_${index}`;
+        },
+      },
+      items: [],
+    };
+  },
   async created() {
-    this.$http.get('http://localhost:8888/getranklist.php').then((response) => {
-        console.log(response.body)
+    this.$http
+      .get('http://35.200.102.240/getranklist.php')
+      .then((response) => {
+        console.log(response.body);
         this.items = response.body;
-    });
-  }
-}
-
+      });
+  },
+};
 </script>
 <style scoped>
-*{
-     list-style: none;
+* {
+    list-style: none;
 }
- .back{
-     height: 1200px;
-     background:no-repeat top center;
-     background-color: #f2fcff;
+.back {
+    height: 1200px;
+    background: no-repeat top center;
+    background-color: #f2fcff;
 }
-.title-line{
-     width: 100%;
-     display: flex;
-     justify-content: center;
+.title-line {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
-.title{
-     width: 30%;
-     height: 50px;
-     display: flex;
-    justify-content: center 
+.title {
+    width: 30%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
 }
-.line{
-     width: 25%;
-     background-color:#3097cc;
-     height: 3px;
-     float: left;
-     margin-top: 15px;
-
+.line {
+    width: 25%;
+    background-color: #3097cc;
+    height: 3px;
+    float: left;
+    margin-top: 15px;
 }
-.line1{
-     width: 30%;
-     height: 42px;
-     float: left;
-     color:#3097cc;
-     font-size: 24px;
-     text-align: center;
+.line1 {
+    width: 30%;
+    height: 42px;
+    float: left;
+    color: #3097cc;
+    font-size: 24px;
+    text-align: center;
 }
-.tab{
-     width: 100%;
-     display: flex;
-     justify-content: center;
+.tab {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
-.ranking-ul{
-     width: 100%;
-     height: 60px;
-     display:flex;
-     justify-content: center
+.ranking-ul {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
 }
-.ranking-ul ul{
-     height: 60px;
-     margin: 0px auto;
-     border-bottom: 1px solid #97ceea;
+.ranking-ul ul {
+    height: 60px;
+    margin: 0px auto;
+    border-bottom: 1px solid #97ceea;
 }
- li{  
-     text-align: center;
-     float:left ;
-     font-size: 18px;
+li {
+    text-align: center;
+    float: left;
+    font-size: 18px;
 }
-.rank1, .id1, .key1, .time1{
-     margin-top: 4px;
+.rank1,
+.id1,
+.key1,
+.time1 {
+    margin-top: 4px;
     height: 30px;
 }
- 
- .rank, .id ,.key, .time{
-     height: 60px;
+
+.rank,
+.id,
+.key,
+.time {
+    height: 60px;
 }
- .id ,.key,.time{
-     margin-top: 25px;
+.id,
+.key,
+.time {
+    margin-top: 25px;
 }
 
-.rank, .rank1{
-     width: 60px;
-     margin-left: 30px;
+.rank,
+.rank1 {
+    width: 60px;
+    margin-left: 30px;
 }
-.rank{
-     line-height: 60px;
+.rank {
+    line-height: 60px;
 }
-.id, .id1{
-     width: 150px;
+.id,
+.id1 {
+    width: 150px;
 }
-.id{
-     margin-top: 25px;
+.id {
+    margin-top: 25px;
 }
-.key, .key1{
-     width: 600px;
+.key,
+.key1 {
+    width: 600px;
 }
-.time, .time1{
-     width: 200px;
+.time,
+.time1 {
+    width: 200px;
 }
- #back2:nth-child(even){
-     background-color: #ccecf8;
- }
-
-#ranking0{
-     background: url(../assets/Firstplace.png) no-repeat center;
-     background-size: 100%;
-     font-size: 0;
-}
-#ranking1{
-     
-     background: url(../assets/Secondplace.png) no-repeat center;
-     font-size: 0;
-     background-size: 100%;
-}
-#ranking2{
-      background: url(../assets/Thirdplace.png) no-repeat center;
-      font-size: 0;
-      background-size: 100%;
-
+#back2:nth-child(even) {
+    background-color: #ccecf8;
 }
 
- @media screen and (max-width: 841px) {
-     .time, .time1{
-         display: none;
+#ranking0 {
+    background: url(../assets/Firstplace.png) no-repeat center;
+    background-size: 100%;
+    font-size: 0;
 }
-     .title{
-         width: 50%;
+#ranking1 {
+    background: url(../assets/Secondplace.png) no-repeat center;
+    font-size: 0;
+    background-size: 100%;
 }
- }
-  @media screen and (max-width: 665px) {
-      .ranking-ul ul{
-         width: 80%;
-         display: flex;
-         justify-content:space-around;
+#ranking2 {
+    background: url(../assets/Thirdplace.png) no-repeat center;
+    font-size: 0;
+    background-size: 100%;
 }
-     .key, .key1{
-         display: none;
+
+@media screen and (max-width: 841px) {
+    .time,
+    .time1 {
+        display: none;
+    }
+    .title {
+        width: 50%;
+    }
 }
-     .title{
-         width: 80%;
- 
-}
-.line{
-     width: 14%;     
-}
+@media screen and (max-width: 665px) {
+    .ranking-ul ul {
+        width: 80%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .key,
+    .key1 {
+        display: none;
+    }
+    .title {
+        width: 80%;
+    }
+    .line {
+        width: 14%;
+    }
 }
 </style>
