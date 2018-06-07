@@ -1,28 +1,28 @@
 <template>
-<div>
+  <div>
 
-<section>
-<div class="userContainer">
-<div class="usericon">
-<img class="iconimg" alt="" width="100" :src="getAvatar"/>
-</div>
-<div class="usercontent">
-<p class="useraddress">{{ myaddress }}</p>
-</div>
-</div>
-</section>
+    <section>
+      <div class="userContainer">
+        <div class="usericon">
+          <img class="iconimg" alt="" width="100" :src="getAvatar"/>
+        </div>
+        <div class="usercontent">
+          <p class="useraddress">{{ myaddress }}</p>
+        </div>
+      </div>
+    </section>
 
-<section>
-<div class="columns is-multiline is-mobile section2div">
-<div class="column is-4-desktop is-4-tablet is-12-mobile cardItem"
-v-for="item in itemIds" :key="item.id"
-@click="gotoCoinProfile(item.id)">
-<CardItem :item='item' :hasMouseOver='true'></CardItem>
-</div>
-</div>
-</section>
+    <section>
+      <div class="columns is-multiline is-mobile section2div">
+        <div class="column is-4-desktop is-4-tablet is-12-mobile cardItem"
+        v-for="item in itemIds" :key="item.id"
+        @click="gotoCoinProfile(item.id)">
+          <CardItem :item='item' :hasMouseOver='true'></CardItem>
+        </div>
+      </div>
+    </section>
 
-</div>
+  </div>
 </template>
 
 <script>
@@ -61,8 +61,10 @@ export default {
       // for (const index in this.types) {
       //   this.itemIds.push(allCards[this.types[index]]);
       // }
-      Object.keys(this.types).forEach(function (index) {
-        this.itemIds.push(allCards[this.types[index]]);
+      const thisself = this;
+      this.types.forEach((index) => {
+        console.log(index);
+        thisself.itemIds.push(allCards[thisself.types[index]]);
       });
       // console.log(this.itemIds)
     });
