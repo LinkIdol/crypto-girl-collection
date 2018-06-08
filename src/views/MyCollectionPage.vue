@@ -64,7 +64,7 @@ export default {
       const thisself = this;
       this.types.forEach((index) => {
         console.log(index);
-        thisself.itemIds.push(allCards[thisself.types[index]]);
+        thisself.itemIds.push(allCards[index]);
       });
       // console.log(this.itemIds)
     });
