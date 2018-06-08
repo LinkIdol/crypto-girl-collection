@@ -54,9 +54,10 @@ export default {
     list-style: none;
 }
 .back {
-    height: 1200px;
+    height: auto;
     background: no-repeat top center;
     background-color: #f2fcff;
+    padding-bottom: 30px;
 }
 .title-line {
     width: 100%;
@@ -64,7 +65,7 @@ export default {
     justify-content: center;
 }
 .title {
-    width: 30%;
+    width: 300px;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -142,7 +143,7 @@ li {
 }
 .key,
 .key1 {
-    width: 600px;
+    width: 500px;
 }
 .time,
 .time1 {
@@ -168,7 +169,39 @@ li {
     background-size: 100%;
 }
 
-@media screen and (max-width: 841px) {
+@media screen and (max-width: 800px) {
+    .time1 {
+        width: 30vw;
+    }
+    .rank1 {
+        width: 10vw;
+    }
+    .key1 {
+        width: 50vw;
+    }
+    .time {
+        width: 30vw;
+        font-size: 12px;
+    }
+    .ranking {
+        width: 20vw;
+    }
+    .key {
+        width: 50vw;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .time {
+        width: 20vw;
+        font-size: 12px;
+    }
+}
+
+/*@media screen and (max-width: 841px) {
     .time,
     .time1 {
         display: none;
@@ -193,5 +226,5 @@ li {
     .line {
         width: 14%;
     }
-}
+}*/
 </style>
