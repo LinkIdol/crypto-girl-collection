@@ -19,7 +19,7 @@
     <div  v-for="( item, index ) in items" :key="item.id" class="ranking-ul">
       <ul>
         <li v-bind:id="'ranking'+index" class="rank"> <b>{{ index+1 }}</b></li>
-        <li class="key"> {{ item.address }}</li>
+        <li class="key" @click="gotoUser(item.address)"> {{ item.address }}</li>
         <li class="time"> {{ item.collecttime }}</li>
       </ul>
    </div>
@@ -38,6 +38,11 @@ export default {
       },
       items: [],
     };
+  },
+  methods: {
+    gotoUser(code) {
+      this.$router.push({ path: `/collection/${code}` });
+    }
   },
   async created() {
     this.$http
@@ -144,6 +149,10 @@ li {
 .key,
 .key1 {
     width: 500px;
+}
+.key {
+    cursor: pointer;
+    height: 30px;
 }
 .time,
 .time1 {

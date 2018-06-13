@@ -43,6 +43,11 @@ export default new Router({
       component: MyCollectionPage,
     },
     {
+      name: 'Collection',
+      path: '/collection/:address',
+      component: MyCollectionPage,
+    },
+    {
       name: 'RankingList',
       path: '/RankingList',
       component: RankingList,
