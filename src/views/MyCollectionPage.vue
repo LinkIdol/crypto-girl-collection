@@ -18,6 +18,9 @@
         v-for="item in itemIds" :key="item.id"
         @click="gotoCoinProfile(item.id)">
           <CardItem :item='item' :hasMouseOver='true'></CardItem>
+          <div class="haveCount">
+            <a :style="{ color: item.textcolor }">拥有{{ item.havecount }}张</a>
+          </div>
         </div>
       </div>
     </section>
@@ -49,24 +52,27 @@ export default {
   },
   async created() {
     const my = await getMe();
-    this.myaddress = my.address;
+    this.myaddress = this.$route.params.address || my.address;
 
     const tokens = await getMyCards();
-    this.types = Array.from(new Set(tokens));
-    // console.log(this.types);
+    var cardcodes = {}
+    await Promise.all(tokens.map(async (tokenId) => {
+      cardcodes[tokenId] ? cardcodes[tokenId]+=1 : cardcodes[tokenId]=1;
+    }));
+    // this.types = Array.from(new Set(tokens));
+    console.log("cardcodes:"+cardcodes);
 
+    const keys = Object.keys(cardcodes);
+    // var itemIds = [];
     this.$http.get('static/girl_cards.json').then((response) => {
-      // console.log(this.types)
       const allCards = response.body;
-      // for (const index in this.types) {
-      //   this.itemIds.push(allCards[this.types[index]]);
-      // }
       const thisself = this;
-      this.types.forEach((index) => {
-        console.log(index);
-        thisself.itemIds.push(allCards[index]);
+      keys.forEach((index) => {
+        var cardinfo = allCards[index];
+        console.log("cardcodes[index]:"+cardcodes[index])
+        cardinfo["havecount"] = cardcodes[index];
+        thisself.itemIds.push(cardinfo);
       });
-      // console.log(this.itemIds)
     });
   },
   methods: {
@@ -149,6 +155,15 @@ cursor: pointer;
 float:right;
 padding-right: 20px;
 }*/
+
+.cardItem {
+  position: relative;
+}
+.haveCount {
+  position:absolute;
+  bottom: 70px;
+  left: 30px;
+}
 
 @media (max-width: 800px) {
     .userContainer {
