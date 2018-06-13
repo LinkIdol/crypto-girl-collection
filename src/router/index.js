@@ -39,6 +39,11 @@ export default new Router({
     },
     {
       name: 'Collection',
+      path: '/collection',
+      component: MyCollectionPage,
+    },
+    {
+      name: 'Collection',
       path: '/collection/:address',
       component: MyCollectionPage,
     },
