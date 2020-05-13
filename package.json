@@ -8,17 +8,29 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
+    "precommit": "lint-staged",
     "build": "node build/build.js",
-    "deploy": "gh-pages -d dist"
+    "commitmsg": "commitlint -e $GIT_PARAMS"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "prettier --tab-width 4 --write",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "bignumber.js": "^6.0.0",
+    "bluebird": "^3.5.1",
     "buefy": "^0.6.5",
+    "clipboard": "^2.0.1",
     "dravatar": "^1.0.2",
     "ethereum-blockies-png": "^0.1.2",
     "js-cookie": "^2.2.0",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
+    "qrcode": "^1.2.0",
+    "ramda": "^0.25.0",
     "superagent": "^3.8.2",
     "timeout-then": "^1.1.0",
     "vue": "^2.5.2",
@@ -33,6 +45,8 @@
     "web3": "^1.0.0-beta.34"
   },
   "devDependencies": {
+    "@commitlint/cli": "^6.2.0",
+    "@commitlint/config-conventional": "^6.1.3",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
@@ -58,6 +72,8 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.3",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
@@ -65,6 +81,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
+    "prettier": "1.13.4",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",

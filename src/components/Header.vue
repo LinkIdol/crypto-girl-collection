@@ -15,7 +15,13 @@
 
         <router-link
                      class="navbar-item"
-                     :to="{ name: 'GirlList' }">
+                     :to="{ name: 'Referral' }">
+          推荐计划 <strong class="tag is-black"> 有佣金 </strong>
+        </router-link>
+
+        <router-link
+                     class="navbar-item"
+                     :to="{ name: 'RankingList' }">
           排行榜
         </router-link>
         <!-- <router-link
@@ -88,7 +94,7 @@
 </template>
 
 <script>
-import { getNetwork, getAnnouncements } from '@/api';
+import { getNetwork } from '@/api';
 
 export default {
   name: 'Header',
@@ -107,17 +113,17 @@ export default {
       return;
     }
     this.network = network;
-    if (!network.contract) {
-      alert(`Unsupported ${network.name}`);
-    }
-    const infos = [];
-    const announcements = await getAnnouncements();
-    announcements.forEach(({ type, content }) => {
-      if (type === 'info') {
-        infos.push(content);
-      }
-    });
-    this.infos = infos;
+    // if (!network.contract) {
+    //   alert(`Unsupported ${network.name}`);
+    // }
+    // const infos = [];
+    // const announcements = await getAnnouncements();
+    // announcements.forEach(({ type, content }) => {
+    //   if (type === 'info') {
+    //     infos.push(content);
+    //   }
+    // });
+    // this.infos = infos;
   },
   computed: {
     locale: {
@@ -127,7 +133,7 @@ export default {
         const lang = i18n.find(
           item =>
             item.locale === locale ||
-            item.aliases.some(alias => alias === locale),
+                        item.aliases.some(alias => alias === locale),
         );
         return lang ? lang.locale : null;
       },
@@ -149,8 +155,8 @@ export default {
 
 <style scoped>
 .navbar {
-  background-color: #91cbe9;
-  color: #fafafa !important;
+    background-color: #91cbe9;
+    color: #fafafa !important;
 }
 .navbar-item {
     color: #0787c8 !important;
